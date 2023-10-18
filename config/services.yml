@@ -1,0 +1,15 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    _instanceof:
+      Symfony\Component\Console\Command\Command:
+        tags: ['command']
+
+    PayloadEntityGenerator\Command\GenerateCommand: ~
+
+    PayloadEntityGenerator\Application\BaseApplication:
+      public: true
+      arguments:
+        - !tagged_iterator command
