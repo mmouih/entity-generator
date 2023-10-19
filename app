@@ -2,7 +2,7 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
-use PayloadEntityGenerator\Application\BaseApplication;
+use PayloadEntityGenerator\BaseApplication;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;

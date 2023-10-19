@@ -1,0 +1,46 @@
+{
+    "name": "John Doe",
+    "age": 30,
+    "address": {
+        "street": "123 Main Street",
+        "city": "Anytown",
+        "postalCode": "12345",
+        "contacts": [
+            {
+                "type": "email",
+                "value": "john.doe@example.com"
+            },
+            {
+                "type": "phone",
+                "value": "555-123-4567"
+            }
+        ]
+    },
+    "orders": [
+        {
+            "orderID": "12345",
+            "products": [
+                {
+                    "productID": "A001",
+                    "productName": "Product 1",
+                    "quantity": 2
+                },
+                {
+                    "productID": "B002",
+                    "productName": "Product 2",
+                    "quantity": 3
+                }
+            ]
+        },
+        {
+            "orderID": "54321",
+            "products": [
+                {
+                    "productID": "C003",
+                    "productName": "Product 3",
+                    "quantity": 1
+                }
+            ]
+        }
+    ]
+}

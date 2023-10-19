@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PayloadEntityGenerator\Application;
+namespace PayloadEntityGenerator;
 
 use Symfony\Component\Console\Application;
 
@@ -12,7 +12,6 @@ final class BaseApplication extends Application
     {
         parent::__construct();
 
-        $commands = $commands instanceof \Traversable ? \iterator_to_array($commands) : $commands;
         foreach ($commands as $command) {
             $this->add($command);
         }

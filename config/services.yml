@@ -7,9 +7,16 @@ services:
       Symfony\Component\Console\Command\Command:
         tags: ['command']
 
-    PayloadEntityGenerator\Command\GenerateCommand: ~
+    PayloadEntityGenerator\:
+      autowire: true
+      resource: '../src/'
 
-    PayloadEntityGenerator\Application\BaseApplication:
+    Symfony\Component\Serializer\Normalizer\DenormalizerInterface:
+      class: Symfony\Component\Serializer\Normalizer\ObjectNormalizer
+
+    Symfony\Component\Serializer\Encoder\JsonDecode: ~
+
+    PayloadEntityGenerator\BaseApplication:
       public: true
       arguments:
         - !tagged_iterator command
