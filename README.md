@@ -10,4 +10,4 @@ PHP8.2
 use the command below to generate from a test payload file:
 `./app generate PayloadModel tests/data/user.json`
 or 
-`make poc` to execute the dem
+`make poc` to execute the demo
