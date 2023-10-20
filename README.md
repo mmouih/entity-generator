@@ -1,6 +1,7 @@
 # payload-entity-generator
-A payload to class generator for php applications for php 8.0+.
+A json payload to class/entity generator for php applications for php 7+.
 The generated Entities follows the PSR12 standard.
+Usefull to transform payload to Data Transfer Objects on the fly
 
 # Requirements
 PHP8.2
@@ -9,6 +10,6 @@ PHP8.2
 `./app generate [ModelName] [Payload path or string]`
 # Example
 use the command below to generate from a test payload file
-`./app generate PayloadModel tests/data/user.json`
+`./app generate User tests/data/user.json`
 or 
 `make poc` to execute the demo
