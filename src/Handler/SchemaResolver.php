@@ -4,6 +4,7 @@ namespace PayloadEntityGenerator\Handler;
 
 /**
  * Generates a Schema from data
+ * @author Mounir Mouih <mounir.mouih@gmail.com>
  */
 class SchemaResolver
 {

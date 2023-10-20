@@ -6,6 +6,9 @@ namespace PayloadEntityGenerator;
 
 use Symfony\Component\Console\Application;
 
+/**
+* @author Mounir Mouih <mounir.mouih@gmail.com>
+*/
 final class BaseApplication extends Application
 {
     public function __construct(iterable $commands = [])

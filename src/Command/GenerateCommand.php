@@ -11,6 +11,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use PayloadEntityGenerator\Handler\ClassGenerationProcessHandler;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * @author Mounir Mouih <mounir.mouih@gmail.com>
+ */
 #[AsCommand(name: 'generate')]
 class GenerateCommand extends Command
 {

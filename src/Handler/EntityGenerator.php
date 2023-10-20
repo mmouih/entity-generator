@@ -6,6 +6,9 @@ use Nette\PhpGenerator\PhpFile;
 use Nette\PhpGenerator\Property;
 use Nette\PhpGenerator\PhpNamespace;
 
+/**
+ * @author Mounir Mouih <mounir.mouih@gmail.com>
+ */
 class EntityGenerator
 {
     public function generate(string $className, array $schema): PhpFile

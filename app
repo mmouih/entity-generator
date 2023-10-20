@@ -1,5 +1,8 @@
 #!/usr/bin/env php
 <?php
+/**
+ * @author Mounir Mouih <mounir.mouih@gmail.com>
+ */
 require __DIR__ . '/vendor/autoload.php';
 
 use PayloadEntityGenerator\BaseApplication;

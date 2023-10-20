@@ -2,12 +2,13 @@
 
 namespace PayloadEntityGenerator\Handler;
 
-use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpFile;
-use Nette\PhpGenerator\PhpNamespace;
 use Nette\Utils\FileSystem;
 use Nette\PhpGenerator\PsrPrinter;
 
+/**
+ * @author Mounir Mouih <mounir.mouih@gmail.com>
+ */
 class EntityPrinter
 {
     public function __construct(

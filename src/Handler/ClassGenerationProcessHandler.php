@@ -5,6 +5,9 @@ namespace PayloadEntityGenerator\Handler;
 use stdClass;
 use Symfony\Component\Serializer\Encoder\JsonDecode;
 
+/**
+ * @author Mounir Mouih <mounir.mouih@gmail.com>
+ */
 class ClassGenerationProcessHandler implements HandlerInterface
 {
     public function __construct(
