@@ -26,12 +26,22 @@ class GenerateCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('start generating');
-        $this->classGenerationHandler->handle(GenerateCommandArgs::fromData([
-            'className' => $input->getArgument('className'),
-            'payload' => $input->getArgument('payload'),
-            'type' => $input->getArgument('type')
-        ]));
-        $output->writeln('file generated with success');
+        try {
+            $this->classGenerationHandler->handle(GenerateCommandArgs::fromData([
+                'className' => $input->getArgument('className'),
+                'payload' => $input->getArgument('payload'),
+                'type' => $input->getArgument('type')
+            ]));
+            $output->writeln('file generated with success');
+        } catch (\Throwable $excepetion) {
+            $output->writeln([
+                'message' => 'An error has occured while generating files' . $excepetion->getMessage(),
+                'file' => $excepetion->getFile(),
+                'line' => $excepetion->getLine(),
+            ]);
+
+            return Command::FAILURE;
+        }
 
         return Command::SUCCESS;
     }
