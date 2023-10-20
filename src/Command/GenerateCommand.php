@@ -23,6 +23,7 @@ class GenerateCommand extends Command
     {
         $output->writeln('start generating');
         $this->classGenerationHandler->handle([
+            'className' => $input->getArgument('className'),
             'payload' => $input->getArgument('payload'),
             'type' => $input->getArgument('type')
         ]);
@@ -34,6 +35,7 @@ class GenerateCommand extends Command
     protected function configure(): void
     {
         $this
+            ->addArgument('className', InputArgument::REQUIRED, 'class name to generate')
             ->addArgument('payload', InputArgument::REQUIRED, 'payload or file')
             ->addArgument('type', InputArgument::OPTIONAL, 'payload type, xml or file', 'json')
             ->setHelp('Generate php a model from a payload');
