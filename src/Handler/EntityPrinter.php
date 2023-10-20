@@ -1,6 +1,6 @@
 <?php
 
-namespace PayloadEntityGenerator\Handler;
+namespace EntityGenerator\Handler;
 
 use Nette\PhpGenerator\PhpFile;
 use Nette\Utils\FileSystem;

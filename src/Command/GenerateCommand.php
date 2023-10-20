@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace PayloadEntityGenerator\Command;
+namespace EntityGenerator\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use PayloadEntityGenerator\Handler\ClassGenerationProcessHandler;
+use EntityGenerator\Handler\EntityGenerationProcess;
+use EntityGenerator\Type\GenerateCommandArgs;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -17,7 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'generate')]
 class GenerateCommand extends Command
 {
-    public function __construct(private ClassGenerationProcessHandler $classGenerationHandler)
+    public function __construct(private EntityGenerationProcess $classGenerationHandler)
     {
         parent::__construct();
     }
@@ -25,11 +26,11 @@ class GenerateCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('start generating');
-        $this->classGenerationHandler->handle([
+        $this->classGenerationHandler->handle(GenerateCommandArgs::fromArguments([
             'className' => $input->getArgument('className'),
             'payload' => $input->getArgument('payload'),
             'type' => $input->getArgument('type')
-        ]);
+        ]));
         $output->writeln('file generated with success');
 
         return Command::SUCCESS;

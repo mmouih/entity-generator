@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PayloadEntityGenerator;
+namespace EntityGenerator;
 
 use Symfony\Component\Console\Application;
 

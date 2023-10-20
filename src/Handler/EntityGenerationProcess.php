@@ -1,14 +1,15 @@
 <?php
 
-namespace PayloadEntityGenerator\Handler;
+namespace EntityGenerator\Handler;
 
+use EntityGenerator\Type\GenerateCommandArgs;
 use stdClass;
 use Symfony\Component\Serializer\Encoder\JsonDecode;
 
 /**
  * @author Mounir Mouih <mounir.mouih@gmail.com>
  */
-class ClassGenerationProcessHandler implements HandlerInterface
+class EntityGenerationProcess
 {
     public function __construct(
         private JsonDecode $decoder,
@@ -18,16 +19,16 @@ class ClassGenerationProcessHandler implements HandlerInterface
     ) {
     }
 
-    public function handle(array $data): void
+    public function handle(GenerateCommandArgs $argument): void
     {
         $schema = $this->schemaResolver->resolve(
-            $this->decode(file_get_contents($data['payload']), $data['type'])
+            $this->decode(file_get_contents($argument->payload), $argument->type)
         );
 
-        $phpFile = $this->entityGenerator->generate($data['className'], $schema);
+        $phpFile = $this->entityGenerator->generate($argument->className, $schema);
 
         // todo: this action maybe recursive, for association
-        $this->entityPrinter->print($data['className'] . 'php', $phpFile);
+        $this->entityPrinter->print($argument->className . 'php', $phpFile);
     }
 
     private function decode(string $payload, string $type): stdClass

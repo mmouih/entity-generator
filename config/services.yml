@@ -11,11 +11,11 @@ services:
       Symfony\Component\Console\Command\Command:
         tags: ['command']
 
-    PayloadEntityGenerator\:
+    EntityGenerator\:
       autowire: true
       resource: '../src/'
 
-    PayloadEntityGenerator\Handler\EntityPrinter:
+    EntityGenerator\Handler\EntityPrinter:
       arguments:
           $parameters: '%printer.params%'
 
@@ -27,7 +27,7 @@ services:
     Nette\PhpGenerator\PsrPrinter: ~
     Nette\Utils\FileSystem: ~
 
-    PayloadEntityGenerator\BaseApplication:
+    EntityGenerator\BaseApplication:
       public: true
       arguments:
         - !tagged_iterator command

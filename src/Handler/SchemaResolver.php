@@ -1,6 +1,6 @@
 <?php
 
-namespace PayloadEntityGenerator\Handler;
+namespace EntityGenerator\Handler;
 
 /**
  * Generates a Schema from data
