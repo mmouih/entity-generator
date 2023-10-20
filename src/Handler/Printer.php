@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EntityGenerator\Handler;
 
 use Nette\PhpGenerator\PhpFile;

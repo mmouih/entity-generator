@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EntityGenerator\Handler;
 
 use EntityGenerator\Type\GenerateCommandArgs;
@@ -15,7 +17,7 @@ class GenerationProcess
         private JsonDecode $decoder,
         private SchemaResolver $schemaResolver,
         private EntityGenerator $entityGenerator,
-        private Printer $Printer,
+        private Printer $printer,
     ) {
     }
 
@@ -27,9 +29,8 @@ class GenerationProcess
 
         $phpFiles = $this->entityGenerator->generate($argument->className, $schema);
 
-        // print php files
         foreach ($phpFiles as $generatedClassName => $phpFile) {
-            $this->Printer->print($generatedClassName . '.php', $phpFile);
+            $this->printer->print($generatedClassName . '.php', $phpFile);
         }
     }
 

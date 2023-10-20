@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EntityGenerator\Component;
 
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;

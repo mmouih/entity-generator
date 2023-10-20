@@ -26,6 +26,12 @@ services:
     EntityGenerator\Handler\EntityGenerator:
       arguments:
           $parameters: '%entity.generator.params%'
+    EntityGenerator\Handler\Property\AtomicType:
+      arguments:
+          $parameters: '%entity.generator.params%'
+    EntityGenerator\Handler\Property\CollectionType:
+      arguments:
+          $parameters: '%entity.generator.params%'
 
     Symfony\Component\Serializer\Normalizer\DenormalizerInterface:
       class: Symfony\Component\Serializer\Normalizer\ObjectNormalizer
