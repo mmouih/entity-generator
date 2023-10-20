@@ -1,6 +1,8 @@
 parameters:
   printer.params: 
     print_dir: 'var/generated'
+  entity.generator.params: 
+    default_namespace: 'Entity\Generated'
 
 services:
     _defaults:
@@ -15,13 +17,20 @@ services:
       autowire: true
       resource: '../src/'
 
-    EntityGenerator\Handler\EntityPrinter:
+    EntityGenerator\Handler\Printer:
       arguments:
           $parameters: '%printer.params%'
+    
+    EntityGenerator\Handler\EntityGenerator:
+      arguments:
+          $parameters: '%entity.generator.params%'
 
     Symfony\Component\Serializer\Normalizer\DenormalizerInterface:
       class: Symfony\Component\Serializer\Normalizer\ObjectNormalizer
 
+    Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter: ~
+    Symfony\Component\String\Inflector\StringProcessor: ~
+    Symfony\Component\String\Inflector\EnglishInflector: ~
     Symfony\Component\Serializer\Encoder\JsonDecode: ~
     Nette\PhpGenerator\ClassType: ~
     Nette\PhpGenerator\PsrPrinter: ~

@@ -5,7 +5,7 @@ namespace EntityGenerator\Type;
 /**
  * @author Mounir Mouih <mounir.mouih@gmail.com>
  */
-interface ArgumentObjectInterface
+interface TypeInterface
 {
-    public static function fromArguments(array $arguments): self;
+    public static function fromData(array $data): self;
 }

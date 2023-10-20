@@ -2,28 +2,35 @@
 
 namespace EntityGenerator\Handler;
 
+use EntityGenerator\Type\SchemaDefinition;
+
 /**
  * Generates a Schema from data
  * @author Mounir Mouih <mounir.mouih@gmail.com>
  */
 class SchemaResolver
 {
+    /**
+     * @return array<SchemaDefinition>
+     */
     public function resolve(\stdClass|array $data): array
     {
-        $structure = [];
+        $schema = [];
         foreach ($data as $field => $value) {
             if (is_scalar($value)) {
-                $structure[$field] = ['type' => $this->getScalarType($value), 'schema' => null];
+                $definition = ['type' => $this->getScalarType($value)];
             } elseif (is_object($value)) {
-                // fetch the structure again
-                $structure[$field] = ['type' => 'object', 'schema' => $this->resolve($value)];
+                // fetch the schema again
+                $definition = ['type' => 'object', 'schema' => $this->resolve($value)];
             } else {
-                // we only consider the structure of the first element of a collection
-                $structure[$field] = ['type' => 'iterable', 'schema' => $this->resolve(current($value))];
+                // we only consider the schema of the first element of a collection
+                $definition = ['type' => 'iterable', 'schema' => $this->resolve(current($value))];
             }
+
+            $schema[$field] = SchemaDefinition::fromData($definition);
         }
 
-        return $structure;
+        return $schema;
     }
 
     private function getScalarType(string $value): string

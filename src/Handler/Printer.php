@@ -9,7 +9,7 @@ use Nette\PhpGenerator\PsrPrinter;
 /**
  * @author Mounir Mouih <mounir.mouih@gmail.com>
  */
-class EntityPrinter
+class Printer
 {
     public function __construct(
         private FileSystem $fileSystem,
