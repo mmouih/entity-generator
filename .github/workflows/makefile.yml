@@ -1,0 +1,22 @@
+name: Makefile CI 
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build & install dependencies
+      run: make build
+    
+    - name: Check coding styles
+      run: make cs
+
+    - name: Static analysis
+      run: make analyze
