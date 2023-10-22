@@ -33,10 +33,18 @@ class SchemaResolver
         return $schema;
     }
 
-    private function getScalarType(string $value): string
+    private function getScalarType(mixed $value): string
     {
-        // todo detect nullable items from payload!, for now all variable are considered nullable
+        // todo detect nullable items from payload!,  noforw all variable are considered nullable
         $type = gettype($value);
+        $type = match ($type) {
+            'integer' => 'int',
+            'double' => 'float',
+            'string' => 'string',
+            'NULL' => 'null',
+            'boolean' => 'bool',
+            default => $type
+        };
 
         return '?' . $type;
     }

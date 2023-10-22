@@ -18,7 +18,7 @@
     },
     "orders": [
         {
-            "orderID": "12345",
+            "orderID": 12345,
             "products": [
                 {
                     "productID": "A001",
@@ -33,7 +33,7 @@
             ]
         },
         {
-            "orderID": "54321",
+            "orderID": 54321,
             "products": [
                 {
                     "productID": "C003",
