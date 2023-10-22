@@ -15,5 +15,6 @@ $loader = new YamlFileLoader($container, new FileLocator('./config/'));
 $loader->load('services.yml');
 $container->compile();
 
+/** @var BaseApplication $application*/
 $application = $container->get(BaseApplication::class);
 $application->run();

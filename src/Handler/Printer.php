@@ -13,6 +13,9 @@ use Nette\PhpGenerator\PsrPrinter;
  */
 class Printer
 {
+    /**
+     * @param string[] $parameters
+     */
     public function __construct(
         private FileSystem $fileSystem,
         private PsrPrinter $printer,

@@ -12,11 +12,14 @@ use EntityGenerator\Type\PropertyMetadata;
  */
 class CollectionType implements PropertyHandlerInterface
 {
+    /**
+     * @param array<string|bool> $parameters
+     */
     public function __construct(private array $parameters)
     {
     }
 
-    public function handle(PropertyMetadata $propertyMetaData, string $propertyType)
+    public function handle(PropertyMetadata $propertyMetaData, string $propertyType): void
     {
         $property = $propertyMetaData->property;
         $property->setValue([]);

@@ -21,6 +21,9 @@ class EntityGenerator
     /** @var array<PhpFile> */
     private array $generateFiles = [];
 
+    /**
+     * @param string[] $parameters
+     */
     public function __construct(
         private StringProcessor $stringProcessor,
         private CollectionType $collectionType,
@@ -83,13 +86,13 @@ class EntityGenerator
         $property = $propertyMetaData->property;
         if ($definition->isIterable()) {
             $propertyType = $this->stringProcessor->normalizeClassName($property->getName(), true);
-            $this->generateRecurisivly($propertyType, $definition->schema);
+            $this->generateRecurisivly($propertyType, $definition->getSchema());
             $this->collectionType->handle($propertyMetaData, $propertyType);
             return;
         }
 
         $propertyType = $this->stringProcessor->normalizeClassName($property->getName());
-        $this->generateRecurisivly($propertyType, $definition->schema);
+        $this->generateRecurisivly($propertyType, $definition->getSchema());
         $this->atomicType->handle($propertyMetaData, $propertyType);
     }
 }

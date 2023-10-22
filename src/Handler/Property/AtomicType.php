@@ -11,6 +11,9 @@ use EntityGenerator\Type\PropertyMetadata;
  */
 class AtomicType implements PropertyHandlerInterface
 {
+    /**
+     * @param array<string|bool> $parameters
+     */
     public function __construct(private array $parameters)
     {
     }

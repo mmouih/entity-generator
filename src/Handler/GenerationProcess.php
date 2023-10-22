@@ -24,7 +24,7 @@ class GenerationProcess
     public function handle(GenerateCommandArgs $argument): void
     {
         $schema = $this->schemaResolver->resolve(
-            $this->decode(file_get_contents($argument->payload), $argument->type)
+            (array) $this->decode(file_get_contents($argument->payload) ?: '', $argument->type)
         );
 
         $phpFiles = $this->entityGenerator->generate($argument->className, $schema);
@@ -34,7 +34,7 @@ class GenerationProcess
         }
     }
 
-    private function decode(string $payload, string $type): stdClass
+    private function decode(string $payload, string $type): mixed
     {
         return $this->decoder->decode($payload, $type);
     }

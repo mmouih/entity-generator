@@ -11,5 +11,5 @@ use EntityGenerator\Type\PropertyMetadata;
  */
 interface PropertyHandlerInterface
 {
-    public function handle(PropertyMetadata $propertyMetaData, string $propertyType);
+    public function handle(PropertyMetadata $propertyMetaData, string $propertyType): void;
 }
