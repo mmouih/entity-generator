@@ -8,17 +8,27 @@
         "contacts": [
             {
                 "type": "email",
-                "value": "john.doe@example.com"
+                "value": "john.doe@example.com",
+                "detail": null
             },
             {
                 "type": "phone",
-                "value": "555-123-4567"
+                "value": "555-123-4567",
+                "detail": {
+                    "id": 1,
+                    "description": "stuff"
+                }
+            },
+            {
+                "type": "phone",
+                "value": null,
+                "detail": null
             }
         ]
     },
     "orders": [
         {
-            "orderID": "12345",
+            "orderID": 12345,
             "products": [
                 {
                     "productID": "A001",
@@ -33,7 +43,7 @@
             ]
         },
         {
-            "orderID": "54321",
+            "orderID": 54321,
             "products": [
                 {
                     "productID": "C003",

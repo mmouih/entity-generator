@@ -77,7 +77,7 @@ class EntityGenerator
         return $property;
     }
 
-    private function handleComplexType(PropertyMetadata $propertyMetaData)
+    private function handleComplexType(PropertyMetadata $propertyMetaData): void
     {
         $definition = $propertyMetaData->definition;
         $property = $propertyMetaData->property;
@@ -85,10 +85,11 @@ class EntityGenerator
             $propertyType = $this->stringProcessor->normalizeClassName($property->getName(), true);
             $this->generateRecurisivly($propertyType, $definition->schema);
             $this->collectionType->handle($propertyMetaData, $propertyType);
-        } else {
-            $propertyType = $this->stringProcessor->normalizeClassName($property->getName());
-            $this->generateRecurisivly($propertyType, $definition->schema);
-            $this->atomicType->handle($propertyMetaData, $propertyType);
+            return;
         }
+
+        $propertyType = $this->stringProcessor->normalizeClassName($property->getName());
+        $this->generateRecurisivly($propertyType, $definition->schema);
+        $this->atomicType->handle($propertyMetaData, $propertyType);
     }
 }

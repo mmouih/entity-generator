@@ -18,9 +18,13 @@ class AtomicType implements PropertyHandlerInterface
     public function handle(PropertyMetaData $propertyMetaData, string $propertyType): void
     {
         $property = $propertyMetaData->property;
-        $property->setNullable(true);
+        $propertyMetaData->property->setNullable(
+            $propertyMetaData->definition->isNullable()
+        );
+
         if (true === $this->parameters['property.type']) {
-            $this->handleTypeDefinition($propertyMetaData, $propertyType);
+            // to avoid double null type, we remove the null type from propertyType, it is being handeled with the setNullable method
+            $this->handleTypeDefinition($propertyMetaData, str_replace(['|null', 'null|', '?'], '', $propertyType));
         }
 
         if (true === $this->parameters['property.phpdoc']) {
