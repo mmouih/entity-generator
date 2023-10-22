@@ -19,6 +19,11 @@ class SchemaDefinition implements TypeInterface
         return $arg;
     }
 
+    public function isNullable(): bool
+    {
+        return str_contains($this->type, 'null') || str_contains($this->type, '?');
+    }
+
     public function isIterable(): bool
     {
         return $this->type === 'iterable';

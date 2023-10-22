@@ -35,7 +35,7 @@ class GenerateCommand extends Command
             $output->writeln('file generated with success');
         } catch (\Throwable $excepetion) {
             $output->writeln([
-                'message' => 'An error has occured while generating files' . $excepetion->getMessage(),
+                'message' => 'An error has occured while generating files : ' . $excepetion->getMessage(),
                 'file' => $excepetion->getFile(),
                 'line' => $excepetion->getLine(),
             ]);

@@ -8,11 +8,21 @@
         "contacts": [
             {
                 "type": "email",
-                "value": "john.doe@example.com"
+                "value": "john.doe@example.com",
+                "detail": null
             },
             {
                 "type": "phone",
-                "value": "555-123-4567"
+                "value": "555-123-4567",
+                "detail": {
+                    "id": 1,
+                    "description": "stuff"
+                }
+            },
+            {
+                "type": "phone",
+                "value": null,
+                "detail": null
             }
         ]
     },
