@@ -1,4 +1,4 @@
-all: cs analyse
+all: cs analyze
 cs:
 	./vendor/bin/phpcs src
 fix:
@@ -6,12 +6,11 @@ fix:
 check:
 	./vendor/bin/phpcs src
 	./vendor/bin/phpstan
-analyse:
+analyze:
 	./vendor/bin/phpstan
-install:
+build:
 	composer install
 sf_update:
 	composer update symfony/*
-
 poc:
 	./app generate User tests/data/user.json
