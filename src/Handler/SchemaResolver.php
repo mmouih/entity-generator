@@ -42,7 +42,6 @@ class SchemaResolver
         }
 
         if (is_iterable($value)) {
-            // we only consider the schema of the first element of a collection
             return ['type' => 'iterable', 'schema' => $this->resolveCollection($value)];
         }
 
