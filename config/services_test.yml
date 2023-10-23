@@ -10,16 +10,14 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-
-    _instanceof:
-      Symfony\Component\Console\Command\Command:
-        tags: ['command']
+        public: true
 
     EntityGenerator\:
       autowire: true
       resource: '../src/'
       exclude:
           - '../src/Type/'
+
 
     EntityGenerator\Handler\Printer:
       arguments:
@@ -45,8 +43,3 @@ services:
     Nette\PhpGenerator\ClassType: ~
     Nette\PhpGenerator\PsrPrinter: ~
     Nette\Utils\FileSystem: ~
-
-    EntityGenerator\BaseApplication:
-      public: true
-      arguments:
-        - !tagged_iterator command

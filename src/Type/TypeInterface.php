@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EntityGenerator\Type;
 
 /**
@@ -7,5 +9,9 @@ namespace EntityGenerator\Type;
  */
 interface TypeInterface
 {
+    /**
+     * @param array<mixed> $data
+     * @return self
+     */
     public static function fromData(array $data): self;
 }

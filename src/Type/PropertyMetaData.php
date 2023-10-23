@@ -7,7 +7,7 @@ namespace EntityGenerator\Type;
 use Nette\PhpGenerator\PhpNamespace;
 use Nette\PhpGenerator\Property;
 
-readonly class PropertyMetadata
+readonly class PropertyMetaData
 {
     public function __construct(
         public Property $property,

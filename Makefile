@@ -1,4 +1,4 @@
-all: cs analyze
+all: cs analyze test
 cs:
 	./vendor/bin/phpcs src
 fix:
@@ -10,6 +10,8 @@ analyze:
 	./vendor/bin/phpstan
 build:
 	composer install
+test:
+	./vendor/bin/phpunit
 sf_update:
 	composer update symfony/*
 poc:

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EntityGenerator\Type;
 
 /**
@@ -7,9 +9,16 @@ namespace EntityGenerator\Type;
  */
 class SchemaDefinition implements TypeInterface
 {
-    public ?array $schema = null;
+    /**
+     * @var ?array<self>
+     */
+    private ?array $schema = null;
     public string $type;
 
+    /**
+     * @param array<mixed> $data
+     * @return self
+     */
     public static function fromData(array $data): self
     {
         $arg = new self();
@@ -32,5 +41,13 @@ class SchemaDefinition implements TypeInterface
     public function hasSchema(): bool
     {
         return null !== $this->schema;
+    }
+
+    /**
+     * @return array<self>
+     */
+    public function getSchema(): array
+    {
+        return $this->schema ?? [];
     }
 }

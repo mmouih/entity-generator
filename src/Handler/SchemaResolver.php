@@ -11,9 +11,10 @@ use EntityGenerator\Type\SchemaDefinition;
 class SchemaResolver
 {
     /**
+     * @param array<mixed> $data
      * @return array<SchemaDefinition>
      */
-    public function resolve(\stdClass|array $data): array
+    public function resolve(array $data): array
     {
         $schema = [];
         foreach ($data as $field => $value) {
@@ -21,7 +22,7 @@ class SchemaResolver
                 $definition = ['type' => $this->getScalarType($value)];
             } elseif (is_object($value)) {
                 // fetch the schema again
-                $definition = ['type' => 'object', 'schema' => $this->resolve($value)];
+                $definition = ['type' => 'object', 'schema' => $this->resolve((array)$value)];
             } elseif (is_iterable($value)) {
                 // we only consider the schema of the first element of a collection
                 $definition = ['type' => 'iterable', 'schema' => $this->resolveCollection($value)];
@@ -37,12 +38,14 @@ class SchemaResolver
 
     /**
      * Resolve collection schema, we join the types and object schema if provided
+     * @param iterable<mixed> $collection
+     * @return array<SchemaDefinition>
      */
-    private function resolveCollection(\stdClass|array $collection): array
+    private function resolveCollection(iterable $collection): array
     {
         $typesPerField = [];
         foreach ($collection as $value) {
-            $resolved = $this->resolve($value);
+            $resolved = $this->resolve((array)$value);
             foreach ($resolved as $field => $schemaDefition) {
                 // handle types join
                 if (!in_array($schemaDefition->type, $typesPerField[$field]['types'] ?? [])) {
@@ -51,7 +54,8 @@ class SchemaResolver
 
                 // handle schema join
                 if (empty($typesPerField[$field]['schema'])) {
-                    $typesPerField[$field]['schema'] = $schemaDefition->schema;
+                    // beware: creating a schema with value != null, an entity will be generated even if empty !
+                    $typesPerField[$field]['schema'] = $schemaDefition->hasSchema() ? $schemaDefition->getSchema() : null;
                 }
             }
         }
