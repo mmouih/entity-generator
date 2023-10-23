@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EntityGenerator\Handler\Property;
 
-use EntityGenerator\Type\PropertyMetadata;
+use EntityGenerator\Type\PropertyMetaData;
 
 /**
  * @author Mounir Mouih <mounir.mouih@gmail.com>

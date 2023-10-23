@@ -7,7 +7,7 @@ namespace EntityGenerator\Handler;
 use Nette\PhpGenerator\PhpFile;
 use Nette\PhpGenerator\Property;
 use Nette\PhpGenerator\PhpNamespace;
-use EntityGenerator\Type\PropertyMetadata;
+use EntityGenerator\Type\PropertyMetaData;
 use EntityGenerator\Type\SchemaDefinition;
 use EntityGenerator\Component\StringProcessor;
 use EntityGenerator\Handler\Property\AtomicType;
@@ -80,7 +80,7 @@ class EntityGenerator
         return $property;
     }
 
-    private function handleComplexType(PropertyMetadata $propertyMetaData): void
+    private function handleComplexType(PropertyMetaData $propertyMetaData): void
     {
         $definition = $propertyMetaData->definition;
         $property = $propertyMetaData->property;

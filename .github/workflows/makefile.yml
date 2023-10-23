@@ -20,3 +20,6 @@ jobs:
 
     - name: Static analysis
       run: make analyze
+    
+    - name: Test suite
+      run: make test

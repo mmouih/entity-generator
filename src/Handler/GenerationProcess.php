@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace EntityGenerator\Handler;
 
-use EntityGenerator\Type\GenerateCommandArgs;
 use stdClass;
+use Nette\PhpGenerator\PhpFile;
+use EntityGenerator\Type\GenerateCommandArgs;
 use Symfony\Component\Serializer\Encoder\JsonDecode;
 
 /**
@@ -21,7 +22,10 @@ class GenerationProcess
     ) {
     }
 
-    public function handle(GenerateCommandArgs $argument): void
+    /**
+     * @return array<PhpFile>
+     */
+    public function handle(GenerateCommandArgs $argument): array
     {
         $schema = $this->schemaResolver->resolve(
             (array) $this->decode(file_get_contents($argument->payload) ?: '', $argument->type)
@@ -32,6 +36,8 @@ class GenerationProcess
         foreach ($phpFiles as $generatedClassName => $phpFile) {
             $this->printer->print($generatedClassName . '.php', $phpFile);
         }
+
+        return $phpFiles;
     }
 
     private function decode(string $payload, string $type): mixed

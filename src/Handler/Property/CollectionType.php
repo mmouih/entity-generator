@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace EntityGenerator\Handler\Property;
 
 use Nette\PhpGenerator\Type;
-use EntityGenerator\Type\PropertyMetadata;
+use EntityGenerator\Type\PropertyMetaData;
 
 /**
  * @author Mounir Mouih <mounir.mouih@gmail.com>
@@ -19,7 +19,7 @@ class CollectionType implements PropertyHandlerInterface
     {
     }
 
-    public function handle(PropertyMetadata $propertyMetaData, string $propertyType): void
+    public function handle(PropertyMetaData $propertyMetaData, string $propertyType): void
     {
         $property = $propertyMetaData->property;
         $property->setValue([]);
