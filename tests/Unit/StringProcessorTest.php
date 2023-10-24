@@ -3,7 +3,6 @@
 namespace App\Tests\Feature;
 
 use EntityGenerator\Component\StringProcessor;
-use EntityGenerator\Type\GenerateCommandArgs;
 use EntityGenerator\Tests\KernelTestCase;
 
 class StringProcessorTest extends KernelTestCase

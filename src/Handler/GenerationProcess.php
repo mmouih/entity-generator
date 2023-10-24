@@ -23,7 +23,7 @@ class GenerationProcess
     }
 
     /**
-     * @return array<PhpFile>
+     * @return array<string> List of printed files
      */
     public function handle(GenerateCommandArgs $argument): array
     {
@@ -33,11 +33,12 @@ class GenerationProcess
 
         $phpFiles = $this->entityGenerator->generate($argument->className, $schema);
 
+        $printed = [];
         foreach ($phpFiles as $generatedClassName => $phpFile) {
-            $this->printer->print($generatedClassName . '.php', $phpFile);
+            $printed[] = $this->printer->print($generatedClassName . '.php', $phpFile);
         }
 
-        return $phpFiles;
+        return $printed;
     }
 
     private function decode(string $payload, string $type): mixed

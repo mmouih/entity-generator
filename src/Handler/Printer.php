@@ -23,11 +23,14 @@ class Printer
     ) {
     }
 
-    public function print(string $filename, PhpFile $file): void
+    public function print(string $filename, PhpFile $file): string
     {
+        $path = $this->parameters['print_dir'] . DIRECTORY_SEPARATOR . $filename;
         $this->fileSystem->write(
-            $this->parameters['print_dir'] . DIRECTORY_SEPARATOR . $filename,
+            $path,
             $this->printer->printFile($file)
         );
+
+        return $path;
     }
 }
