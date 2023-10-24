@@ -18,5 +18,9 @@ class EntityGenerationTest extends KernelTestCase
         ]));
 
         $this->assertCount(6, $files);
+        // clean up created files
+        foreach ($files as $file) {
+            unlink($file);
+        }
     }
 }

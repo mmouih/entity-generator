@@ -21,7 +21,9 @@ class StringProcessor
 
     public function toCamelCase(string $str): string
     {
-        return $this->camelCaseToSnakeCaseNameConverter->denormalize($str);
+        return $this->camelCaseToSnakeCaseNameConverter->denormalize(
+            str_replace('-', '_', strtolower($str))
+        );
     }
 
     /**
