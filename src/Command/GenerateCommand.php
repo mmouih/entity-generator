@@ -27,12 +27,13 @@ class GenerateCommand extends Command
     {
         $output->writeln('start generating');
         try {
-            $this->classGenerationHandler->handle(GenerateCommandArgs::fromData([
+            $printed = $this->classGenerationHandler->handle(GenerateCommandArgs::fromData([
                 'className' => $input->getArgument('className'),
                 'payload' => $input->getArgument('payload'),
                 'type' => $input->getArgument('type')
             ]));
-            $output->writeln('file generated with success');
+            $output->writeln('files generated with success in:');
+            $output->writeln($printed);
         } catch (\Throwable $excepetion) {
             $output->writeln([
                 'message' => 'An error has occured while generating files : ' . $excepetion->getMessage(),
