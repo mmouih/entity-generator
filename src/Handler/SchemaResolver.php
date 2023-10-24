@@ -18,22 +18,34 @@ class SchemaResolver
     {
         $schema = [];
         foreach ($data as $field => $value) {
-            if (is_scalar($value) || is_null($value)) {
-                $definition = ['type' => $this->getScalarType($value)];
-            } elseif (is_object($value)) {
-                // fetch the schema again
-                $definition = ['type' => 'object', 'schema' => $this->resolve((array)$value)];
-            } elseif (is_iterable($value)) {
-                // we only consider the schema of the first element of a collection
-                $definition = ['type' => 'iterable', 'schema' => $this->resolveCollection($value)];
-            } else {
-                throw new \LogicException('payload values can be either scalar, iterabel or stdClass objects !');
-            }
-
-            $schema[$field] = SchemaDefinition::fromData($definition);
+            $schema[$field] = SchemaDefinition::fromData(
+                $this->resolveField($value)
+            );
         }
 
         return $schema;
+    }
+
+    /**
+     * @param mixed $value
+     * @return  array<string, array<SchemaDefinition>|string>
+     */
+    private function resolveField(mixed $value): array
+    {
+        if (is_scalar($value) || is_null($value)) {
+            return ['type' => $this->getScalarType($value)];
+        }
+
+        if (is_object($value)) {
+            // fetch the schema recursively
+            return ['type' => 'object', 'schema' => $this->resolve((array)$value)];
+        }
+
+        if (is_iterable($value)) {
+            return ['type' => 'iterable', 'schema' => $this->resolveCollection($value)];
+        }
+
+        throw new \LogicException('payload values can be either scalar, iterable or stdClass objects !');
     }
 
     /**
