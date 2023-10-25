@@ -36,8 +36,8 @@ class SchemaResolver
             return ['type' => $this->getScalarType($value)];
         }
 
-        if (is_object($value)) {
-            // fetch the schema recursively
+        if (is_object($value) || !array_is_list($value)) {
+            // fetch the schema recursivel
             return ['type' => 'object', 'schema' => $this->resolve((array)$value)];
         }
 
@@ -45,6 +45,7 @@ class SchemaResolver
             return ['type' => 'iterable', 'schema' => $this->resolveCollection($value)];
         }
 
+        // @phpstan-ignore-next-line, yes this line is unreacheable, the logic exception is a safety net
         throw new \LogicException('payload values can be either scalar, iterable or stdClass objects !');
     }
 

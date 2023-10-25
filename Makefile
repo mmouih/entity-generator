@@ -1,4 +1,4 @@
-all: cs analyze test
+all: cs review test
 cs:
 	./vendor/bin/phpcs src
 fix:
@@ -6,7 +6,7 @@ fix:
 check:
 	./vendor/bin/phpcs src
 	./vendor/bin/phpstan
-analyze:
+review:
 	./vendor/bin/phpstan
 build:
 	composer install
