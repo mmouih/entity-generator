@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use EntityGenerator\Handler\GenerationProcess;
 use EntityGenerator\Type\GenerateCommandArgs;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -30,8 +31,8 @@ class GenerateCommand extends Command
             $printed = $this->classGenerationHandler->handle(GenerateCommandArgs::fromData([
                 'className' => $input->getArgument('className'),
                 'payload' => $input->getArgument('payload'),
-                'file' => $input->getArgument('file'),
-                'format' => $input->getArgument('format')
+                'format' => $input->getArgument('format'),
+                'source' => $input->getOption('source'),
             ]));
             $output->writeln('files generated with success in:');
             $output->writeln($printed);
@@ -52,9 +53,9 @@ class GenerateCommand extends Command
     {
         $this
             ->addArgument('className', InputArgument::REQUIRED, 'class name to generate')
-            ->addArgument('file', InputArgument::OPTIONAL, 'payload source file')
-            ->addArgument('payload', InputArgument::OPTIONAL, 'payload', '{}')
+            ->addArgument('payload', InputArgument::REQUIRED, 'payload')
             ->addArgument('format', InputArgument::OPTIONAL, 'payload format, xml or file', 'json')
+            ->addOption('source', 'src', InputOption::VALUE_OPTIONAL, 'the payload used is it a file!', 'file')
             ->setHelp('Generate php a model from a payload');
     }
 }

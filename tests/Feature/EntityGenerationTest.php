@@ -13,8 +13,8 @@ class EntityGenerationTest extends KernelTestCase
         $generationProcess = $this->container()->get(GenerationProcess::class);
         $files = $generationProcess->handle(GenerateCommandArgs::fromData([
             'className' => 'User',
-            'file' => __DIR__ . '/../data/user.json',
-            'payload' => null,
+            'payload' => __DIR__ . '/../data/user.json',
+            'source' => 'file',
             'format' => 'json',
         ]));
 
@@ -23,5 +23,42 @@ class EntityGenerationTest extends KernelTestCase
         foreach ($files as $file) {
             unlink($file);
         }
+    }
+
+    public function testGenerateFromInput(): void
+    {
+        $generationProcess = $this->container()->get(GenerationProcess::class);
+        $files = $generationProcess->handle(GenerateCommandArgs::fromData([
+            'className' => 'User',
+            'payload' => json_encode([
+                "id" => 2,
+                "name" => "john doe",
+                "account" => ['account_id' => 1, 'label' => null],
+                'details' => [
+                    ['uid' => 'ccsf', 'sample' => 'hello'],
+                    ['uid' => 'cfsx', 'sample' => null],
+                ]
+            ]),
+            'source' => 'text',
+            'format' => 'json',
+        ]));
+
+        $this->assertCount(3, $files);
+        // clean up created files
+        foreach ($files as $file) {
+            unlink($file);
+        }
+    }
+
+    public function testFileNotExist(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $generationProcess = $this->container()->get(GenerationProcess::class);
+        $generationProcess->handle(GenerateCommandArgs::fromData([
+            'className' => 'User',
+            'payload' => __DIR__ . '/../data/user1.cson',
+            'source' => 'file',
+            'format' => 'json',
+        ]));
     }
 }
