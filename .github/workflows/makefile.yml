@@ -26,7 +26,7 @@ jobs:
       run: make cs
 
     - name: Static analysis
-      run: make analyze
+      run: make review
     
     - name: Test suite
       run: make test
