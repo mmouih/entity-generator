@@ -13,8 +13,9 @@ class EntityGenerationTest extends KernelTestCase
         $generationProcess = $this->container()->get(GenerationProcess::class);
         $files = $generationProcess->handle(GenerateCommandArgs::fromData([
             'className' => 'User',
-            'payload' => __DIR__ . '/../data/user.json',
-            'type' => 'json'
+            'file' => __DIR__ . '/../data/user.json',
+            'payload' => null,
+            'format' => 'json',
         ]));
 
         $this->assertCount(6, $files);
