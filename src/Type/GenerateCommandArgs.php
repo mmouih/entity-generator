@@ -11,7 +11,7 @@ class GenerateCommandArgs implements TypeInterface
 {
     public string $className;
     public ?string $payload;
-    public ?string $file;
+    public string $source = 'file';
     public string $format = 'json';
 
     /**
@@ -23,9 +23,14 @@ class GenerateCommandArgs implements TypeInterface
         $arg = new self();
         $arg->className = $arguments['className'];
         $arg->payload = $arguments['payload'];
-        $arg->file = $arguments['file'];
+        $arg->source = $arguments['source'];
         $arg->format = $arguments['format'];
 
         return $arg;
+    }
+
+    public function isFile(): bool
+    {
+        return 'file' === $this->source;
     }
 }

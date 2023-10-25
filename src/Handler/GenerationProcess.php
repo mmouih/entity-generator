@@ -43,8 +43,12 @@ class GenerationProcess
 
     private function decode(GenerateCommandArgs $argument): mixed
     {
-        if ($argument->file && file_exists($argument->file)) {
-            $content = file_get_contents($argument->file) ?: '';
+        if ($argument->isFile() && !file_exists($argument->payload)) {
+            throw new \InvalidArgumentException(sprintf('File %s does not exit!', $argument->payload));
+        }
+
+        if ($argument->isFile()) {
+            $content = file_get_contents($argument->payload) ?: '';
         } else {
             $content = $argument->payload ?: '{}';
         }
