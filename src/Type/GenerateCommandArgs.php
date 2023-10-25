@@ -10,7 +10,7 @@ namespace EntityGenerator\Type;
 class GenerateCommandArgs implements TypeInterface
 {
     public string $className;
-    public ?string $payload;
+    public string $payload;
     public string $source = 'file';
     public string $format = 'json';
 
