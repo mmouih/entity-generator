@@ -10,8 +10,9 @@ namespace EntityGenerator\Type;
 class GenerateCommandArgs implements TypeInterface
 {
     public string $className;
-    public string $payload;
-    public string $type;
+    public ?string $payload;
+    public ?string $file;
+    public string $format = 'json';
 
     /**
      * @param array<string> $arguments
@@ -22,7 +23,8 @@ class GenerateCommandArgs implements TypeInterface
         $arg = new self();
         $arg->className = $arguments['className'];
         $arg->payload = $arguments['payload'];
-        $arg->type = $arguments['type'];
+        $arg->file = $arguments['file'];
+        $arg->format = $arguments['format'];
 
         return $arg;
     }

@@ -30,7 +30,8 @@ class GenerateCommand extends Command
             $printed = $this->classGenerationHandler->handle(GenerateCommandArgs::fromData([
                 'className' => $input->getArgument('className'),
                 'payload' => $input->getArgument('payload'),
-                'type' => $input->getArgument('type')
+                'file' => $input->getArgument('file'),
+                'format' => $input->getArgument('format')
             ]));
             $output->writeln('files generated with success in:');
             $output->writeln($printed);
@@ -51,8 +52,9 @@ class GenerateCommand extends Command
     {
         $this
             ->addArgument('className', InputArgument::REQUIRED, 'class name to generate')
-            ->addArgument('payload', InputArgument::REQUIRED, 'payload or file')
-            ->addArgument('type', InputArgument::OPTIONAL, 'payload type, xml or file', 'json')
+            ->addArgument('file', InputArgument::OPTIONAL, 'payload source file')
+            ->addArgument('payload', InputArgument::OPTIONAL, 'payload', '{}')
+            ->addArgument('format', InputArgument::OPTIONAL, 'payload format, xml or file', 'json')
             ->setHelp('Generate php a model from a payload');
     }
 }

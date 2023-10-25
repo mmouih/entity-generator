@@ -28,7 +28,7 @@ class GenerationProcess
     public function handle(GenerateCommandArgs $argument): array
     {
         $schema = $this->schemaResolver->resolve(
-            (array) $this->decode(file_get_contents($argument->payload) ?: '', $argument->type)
+            $this->decode($argument)
         );
 
         $phpFiles = $this->entityGenerator->generate($argument->className, $schema);
@@ -41,8 +41,14 @@ class GenerationProcess
         return $printed;
     }
 
-    private function decode(string $payload, string $type): mixed
+    private function decode(GenerateCommandArgs $argument): mixed
     {
-        return $this->decoder->decode($payload, $type);
+        if ($argument->file && file_exists($argument->file)) {
+            $content = file_get_contents($argument->file) ?: '';
+        } else {
+            $content = $argument->payload ?: '{}';
+        }
+
+        return (array)$this->decoder->decode($content, $argument->format);
     }
 }
