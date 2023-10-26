@@ -13,5 +13,11 @@ This tool is particularly valuable for swiftly transforming payloads into Data T
 
 To leverage the **Payload Entity Generator**, use the following command:
 
+### Using Json file
 ```shell
-./app generate [EntityName] [Payload path or string]
+./app generate [EntityName] [Payload]
+```
+### Using Json string
+```shell
+./app generate [EntityName] [Json] --source=json
+```
