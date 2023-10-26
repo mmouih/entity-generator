@@ -12,7 +12,6 @@ use EntityGenerator\Bridge\Nette\Wrapper\Trait\AddClassTrait;
 class NamespaceWrapper
 {
     use NameTrait;
-    use AddClassTrait;
 
     private PhpNamespace $inner;
 
@@ -24,5 +23,10 @@ class NamespaceWrapper
     public function getInner(): PhpNamespace
     {
         return $this->inner;
+    }
+
+    public function addClass(string $class): ClassWrapper
+    {
+        return new ClassWrapper($this->inner->addClass($class));
     }
 }

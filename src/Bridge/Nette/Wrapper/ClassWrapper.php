@@ -14,13 +14,22 @@ class ClassWrapper
 
     private ClassType $inner;
 
-    public function __construct(string $className)
+    public function __construct(string|ClassType $className)
     {
-        $this->inner = new ClassType($className);
+        if ($className instanceof ClassType) {
+            $this->inner = $className;
+        } else {
+            $this->inner = new ClassType($className);
+        }
     }
 
     public function addMember(PropertyWrapper $member): void
     {
         $this->inner->addMember($member->getInner());
+    }
+
+    public function getInner(): ClassType
+    {
+        return $this->inner;
     }
 }

@@ -13,7 +13,6 @@ use EntityGenerator\Bridge\Nette\Wrapper\Trait\AddClassTrait;
 class FileWrapper
 {
     use CommentTrait;
-    use AddClassTrait;
 
     private PhpFile $inner;
     public function __construct()
@@ -30,5 +29,13 @@ class FileWrapper
     public function getInner(): PhpFile
     {
         return $this->inner;
+    }
+
+    public function addClass(string $class): ClassWrapper
+    {
+        $classWrapper = new ClassWrapper($class);
+        $this->inner->addClass($class);
+
+        return $classWrapper;
     }
 }
