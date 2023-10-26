@@ -6,6 +6,9 @@ use EntityGenerator\Tests\KernelTestCase;
 use EntityGenerator\Handler\SchemaResolver;
 use EntityGenerator\Type\SchemaDefinition;
 
+/**
+ * @author Mounir Mouih <mounir.mouih@gmail.com>
+ */
 class SchemaResolverTest extends KernelTestCase
 {
     private SchemaResolver $resolver;

@@ -6,6 +6,9 @@ use EntityGenerator\Bridge\Nette\Printer;
 use EntityGenerator\Bridge\Nette\Wrapper\FileWrapper;
 use EntityGenerator\Tests\KernelTestCase;
 
+/**
+ * @author Mounir Mouih <mounir.mouih@gmail.com>
+ */
 class PrinterTest extends KernelTestCase
 {
     private Printer $printer;

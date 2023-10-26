@@ -5,6 +5,9 @@ namespace App\Tests\Feature;
 use EntityGenerator\Component\StringProcessor;
 use EntityGenerator\Tests\KernelTestCase;
 
+/**
+ * @author Mounir Mouih <mounir.mouih@gmail.com>
+ */
 class StringProcessorTest extends KernelTestCase
 {
     private StringProcessor $stringProcessor;

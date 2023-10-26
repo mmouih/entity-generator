@@ -6,6 +6,9 @@ use EntityGenerator\Type\GenerateCommandArgs;
 use EntityGenerator\Handler\GenerationProcess;
 use EntityGenerator\Tests\KernelTestCase;
 
+/**
+ * @author Mounir Mouih <mounir.mouih@gmail.com>
+ */
 class EntityGenerationTest extends KernelTestCase
 {
     public function testGenerate(): void

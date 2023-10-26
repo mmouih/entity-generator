@@ -8,6 +8,9 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * @author Mounir Mouih <mounir.mouih@gmail.com>
+ */
 class KernelTestCase extends TestCase
 {
     private $container = null;

@@ -6,6 +6,9 @@ use Nette\PhpGenerator\Property;
 use EntityGenerator\Bridge\Nette\Wrapper\Trait\NameTrait;
 use EntityGenerator\Bridge\Nette\Wrapper\Trait\CommentTrait;
 
+/**
+ * @author Mounir Mouih <mounir.mouih@gmail.com>
+ */
 class PropertyWrapper
 {
     use CommentTrait;
