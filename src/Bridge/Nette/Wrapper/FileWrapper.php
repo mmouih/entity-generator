@@ -7,6 +7,9 @@ use EntityGenerator\Bridge\Nette\Wrapper\NamespaceWrapper;
 use EntityGenerator\Bridge\Nette\Wrapper\Trait\CommentTrait;
 use EntityGenerator\Bridge\Nette\Wrapper\Trait\AddClassTrait;
 
+/**
+ * @author Mounir Mouih <mounir.mouih@gmail.com>
+ */
 class FileWrapper
 {
     use CommentTrait;

@@ -5,6 +5,9 @@ namespace EntityGenerator\Bridge\Nette\Wrapper;
 use Nette\PhpGenerator\ClassType;
 use EntityGenerator\Bridge\Nette\Wrapper\Trait\CommentTrait;
 
+/**
+ * @author Mounir Mouih <mounir.mouih@gmail.com>
+ */
 class ClassWrapper
 {
     use CommentTrait;
