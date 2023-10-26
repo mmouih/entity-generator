@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace EntityGenerator\Handler;
 
-use stdClass;
-use Nette\PhpGenerator\PhpFile;
+use EntityGenerator\Bridge\Nette\Printer;
 use EntityGenerator\Type\GenerateCommandArgs;
 use Symfony\Component\Serializer\Encoder\JsonDecode;
 
@@ -14,11 +13,15 @@ use Symfony\Component\Serializer\Encoder\JsonDecode;
  */
 class GenerationProcess
 {
+    /**
+     * @param string[] $parameters
+     */
     public function __construct(
         private JsonDecode $decoder,
         private SchemaResolver $schemaResolver,
         private EntityGenerator $entityGenerator,
         private Printer $printer,
+        private array $parameters
     ) {
     }
 
@@ -31,11 +34,15 @@ class GenerationProcess
             $this->decode($argument)
         );
 
-        $phpFiles = $this->entityGenerator->generate($argument->className, $schema);
+        $files = $this->entityGenerator->generate($argument->className, $schema);
 
         $printed = [];
-        foreach ($phpFiles as $generatedClassName => $phpFile) {
-            $printed[] = $this->printer->print($generatedClassName . '.php', $phpFile);
+        foreach ($files as $generatedClassName => $file) {
+            $printed[] = $this->printer->print(
+                $this->parameters['print_dir'],
+                $generatedClassName . '.php',
+                $file
+            );
         }
 
         return $printed;

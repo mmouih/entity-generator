@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace EntityGenerator\Type;
 
-use Nette\PhpGenerator\PhpNamespace;
-use Nette\PhpGenerator\Property;
+use EntityGenerator\Bridge\Nette\Wrapper\NamespaceWrapper;
+use EntityGenerator\Bridge\Nette\Wrapper\PropertyWrapper;
 
 readonly class PropertyMetaData
 {
     public function __construct(
-        public Property $property,
+        public PropertyWrapper $property,
         public SchemaDefinition $definition,
-        public PhpNamespace $namespace
+        public NamespaceWrapper $namespace
     ) {
     }
 }

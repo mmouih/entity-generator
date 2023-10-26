@@ -17,9 +17,10 @@ services:
       resource: '../src/'
       exclude:
           - '../src/Type/'
+          - '../src/Bridge/Nette/Wrapper/'
 
 
-    EntityGenerator\Handler\Printer:
+    EntityGenerator\Handler\GenerationProcess:
       arguments:
           $parameters: '%printer.params%'
     

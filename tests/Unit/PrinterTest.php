@@ -2,9 +2,9 @@
 
 namespace App\Tests\Feature;
 
-use EntityGenerator\Handler\Printer;
+use EntityGenerator\Bridge\Nette\Printer;
+use EntityGenerator\Bridge\Nette\Wrapper\FileWrapper;
 use EntityGenerator\Tests\KernelTestCase;
-use Nette\PhpGenerator\PhpFile;
 
 class PrinterTest extends KernelTestCase
 {
@@ -17,10 +17,10 @@ class PrinterTest extends KernelTestCase
     }
     public function testPrinter(): void
     {
-        $file = new PhpFile();
+        $file = new FileWrapper();
         $file->addComment("this is a comment in a php file");
         $file->addClass('JaneDoeEmulator');
-        $path = $this->printer->print("test.php", $file);
+        $path = $this->printer->print('var/generated', "test.php", $file);
         $expected = <<<EOF
 <?php
 
