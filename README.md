@@ -21,3 +21,7 @@ To leverage the **Payload Entity Generator**, use the following command:
 ```shell
 ./app generate [EntityName] [Json] --source=json
 ```
+Exemple: 
+```shell
+./app generate User '{"id": 1, "label": "john"}' --source=json
+```
