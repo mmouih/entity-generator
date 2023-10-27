@@ -87,9 +87,9 @@ class SchemaResolver
             'integer' => 'int',
             'double' => 'float',
             'string' => 'string',
-            'NULL' => 'null',
+            'NULL' => 'null', // If type stayes nullable after resolving all the schema, it will take mixed type
             'boolean' => 'bool',
-            default => throw new \LogicException(),
+            default => throw new \LogicException('Unexpected type!')
         };
     }
 }

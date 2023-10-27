@@ -45,6 +45,6 @@ class AtomicType implements PropertyHandlerInterface
             $type = $propertyType;
         }
 
-        $propertyMetaData->property->setType($type);
+        $propertyMetaData->property->setType('null' === $type ? 'mixed' : $type);
     }
 }
