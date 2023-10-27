@@ -12,4 +12,4 @@ test:
 sf_update:
 	composer update symfony/*
 poc:
-	./app generate User tests/data/user.json
+	./app generate User tests/data/user.json -f

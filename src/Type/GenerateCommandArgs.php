@@ -1,36 +1,47 @@
-<?php
+<?php // phpcs:disable PSR1.Files.SideEffects.FoundWithSymbols, waiting for v8.2 readonly bug fix
 
 declare(strict_types=1);
 
 namespace EntityGenerator\Type;
 
-/**
- * @author Mounir Mouih <mounir.mouih@gmail.com>
- */
-class GenerateCommandArgs implements TypeInterface
+readonly class GenerateCommandArgs
 {
-    public string $className;
-    public string $payload;
-    public string $source = 'file';
-    public string $format = 'json';
+    public function __construct(
+        private string $className,
+        private string $payload,
+        private bool $file = false,
+        private string $format = 'json'
+    ) {
+        if (0 === strlen(trim($payload))) {
+            throw new \InvalidArgumentException('The payload is required!');
+        }
 
-    /**
-     * @param array<string> $arguments
-     * @return self
-     */
-    public static function fromData(array $arguments): self
-    {
-        $arg = new self();
-        $arg->className = $arguments['className'];
-        $arg->payload = $arguments['payload'];
-        $arg->source = $arguments['source'];
-        $arg->format = $arguments['format'];
+        if (0 === strlen(trim($className))) {
+            throw new \InvalidArgumentException('The className is is required!');
+        }
 
-        return $arg;
+        if (!in_array($format, ['json', 'xml'])) {
+            throw new \InvalidArgumentException('The argument format can either be json or xml');
+        }
     }
 
     public function isFile(): bool
     {
-        return 'file' === $this->source;
+        return $this->file;
+    }
+
+    public function getClassName(): string
+    {
+        return $this->className;
+    }
+
+    public function getPayload(): string
+    {
+        return $this->payload;
+    }
+
+    public function getFormat(): string
+    {
+        return $this->format;
     }
 }

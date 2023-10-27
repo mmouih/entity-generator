@@ -7,7 +7,7 @@ namespace EntityGenerator\Type;
 /**
  * @author Mounir Mouih <mounir.mouih@gmail.com>
  */
-class SchemaDefinition implements TypeInterface
+class SchemaDefinition
 {
     /**
      * @var ?array<self>

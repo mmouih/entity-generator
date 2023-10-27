@@ -14,12 +14,12 @@ class EntityGenerationTest extends KernelTestCase
     public function testGenerate(): void
     {
         $generationProcess = $this->container()->get(GenerationProcess::class);
-        $files = $generationProcess->handle(GenerateCommandArgs::fromData([
-            'className' => 'User',
-            'payload' => __DIR__ . '/../data/user.json',
-            'source' => 'file',
-            'format' => 'json',
-        ]));
+        $files = $generationProcess->handle(new GenerateCommandArgs(
+            className: 'User',
+            payload: __DIR__ . '/../data/user.json',
+            file: true,
+            format: 'json',
+        ));
 
         $this->assertCount(6, $files);
         // clean up created files
@@ -31,9 +31,9 @@ class EntityGenerationTest extends KernelTestCase
     public function testGenerateFromInput(): void
     {
         $generationProcess = $this->container()->get(GenerationProcess::class);
-        $files = $generationProcess->handle(GenerateCommandArgs::fromData([
-            'className' => 'User',
-            'payload' => json_encode([
+        $files = $generationProcess->handle(new GenerateCommandArgs(
+            className : 'User',
+            payload : json_encode([
                 "id" => 2,
                 "name" => "john doe",
                 "account" => ['account_id' => 1, 'label' => null],
@@ -42,9 +42,9 @@ class EntityGenerationTest extends KernelTestCase
                     ['uid' => 'cfsx', 'sample' => null],
                 ]
             ]),
-            'source' => 'text',
-            'format' => 'json',
-        ]));
+            file : false,
+            format : 'json',
+        ));
 
         $this->assertCount(3, $files);
         $detailFile = $this->container()->getParameter('printer.params')['print_dir'] . DIRECTORY_SEPARATOR . 'Detail.php';
@@ -101,11 +101,11 @@ EOF;
     {
         $this->expectException(\InvalidArgumentException::class);
         $generationProcess = $this->container()->get(GenerationProcess::class);
-        $generationProcess->handle(GenerateCommandArgs::fromData([
-            'className' => 'User',
-            'payload' => __DIR__ . '/../data/user1.cson',
-            'source' => 'file',
-            'format' => 'json',
-        ]));
+        $generationProcess->handle(new GenerateCommandArgs(
+            className : 'User',
+            payload: __DIR__ . '/../data/user1.cson',
+            file: true,
+            format: 'json',
+        ));
     }
 }

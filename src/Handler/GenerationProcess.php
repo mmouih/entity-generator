@@ -34,7 +34,7 @@ class GenerationProcess
             $this->decode($argument)
         );
 
-        $files = $this->entityGenerator->generate($argument->className, $schema);
+        $files = $this->entityGenerator->generate($argument->getClassName(), $schema);
 
         $printed = [];
         foreach ($files as $generatedClassName => $file) {
@@ -50,16 +50,16 @@ class GenerationProcess
 
     private function decode(GenerateCommandArgs $argument): mixed
     {
-        if ($argument->isFile() && !file_exists($argument->payload)) {
-            throw new \InvalidArgumentException(sprintf('File %s does not exit!', $argument->payload));
+        if ($argument->isFile() && !file_exists($argument->getPayload())) {
+            throw new \InvalidArgumentException(sprintf('File %s does not exit!', $argument->getPayload()));
         }
 
         if ($argument->isFile()) {
-            $content = file_get_contents($argument->payload) ?: '';
+            $content = file_get_contents($argument->getPayload()) ?: '';
         } else {
-            $content = $argument->payload ?: '{}';
+            $content = $argument->getPayload() ?: '{}';
         }
 
-        return (array)$this->decoder->decode($content, $argument->format);
+        return (array)$this->decoder->decode($content, $argument->getFormat());
     }
 }

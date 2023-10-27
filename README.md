@@ -15,13 +15,28 @@ To leverage the **Payload Entity Generator**, use the following command:
 
 ### Using Json file
 ```shell
-./app generate [EntityName] [Payload]
+./app generate [EntityName] [Payload] --f
 ```
 ### Using Json string
 ```shell
-./app generate [EntityName] [Json] --source=json
+./app generate [EntityName] [Json] "json" 
 ```
+Or simply 
+```shell
+./app generate [EntityName] [Json]
+```
+
 Exemple: 
 ```shell
-./app generate User '{"id": 1, "label": "john"}' --source=json
+./app generate User '{"id": 1, "label": "john"}'
+```
+
+### Using XML file
+```shell
+./app generate [EntityName] [XML] "xml" -f
+```
+
+### Using XML string
+```shell
+./app generate [EntityName] [XML] "xml" 
 ```

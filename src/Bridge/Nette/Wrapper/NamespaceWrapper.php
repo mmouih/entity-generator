@@ -4,7 +4,6 @@ namespace EntityGenerator\Bridge\Nette\Wrapper;
 
 use Nette\PhpGenerator\PhpNamespace;
 use EntityGenerator\Bridge\Nette\Wrapper\Trait\NameTrait;
-use EntityGenerator\Bridge\Nette\Wrapper\Trait\AddClassTrait;
 
 /**
  * @author Mounir Mouih <mounir.mouih@gmail.com>
