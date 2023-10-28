@@ -1,4 +1,4 @@
-all: cs review test
+all: validate cs review test
 cs:
 	./vendor/bin/phpcs src
 fix:
@@ -7,6 +7,8 @@ review:
 	./vendor/bin/phpstan
 build:
 	composer install
+validate:
+	composer validate
 test:
 	./vendor/bin/phpunit
 sf_update:

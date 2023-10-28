@@ -19,6 +19,9 @@ jobs:
           coverage: none
 
 
+    - name: Validate composer 
+      run: make validate
+
     - name: Build & install dependencies
       run: make build
     
