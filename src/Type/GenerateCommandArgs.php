@@ -20,8 +20,12 @@ readonly class GenerateCommandArgs
             throw new \InvalidArgumentException('The className is is required!');
         }
 
-        if (!in_array($format, ['json', 'xml'])) {
+        if (!in_array($format, ['json', 'xml', 'yaml'])) {
             throw new \InvalidArgumentException('The argument format can either be json or xml');
+        }
+
+        if ($this->isFile() && !file_exists($this->getPayload())) {
+            throw new \InvalidArgumentException(sprintf('File %s does not exit!', $this->getPayload()));
         }
     }
 

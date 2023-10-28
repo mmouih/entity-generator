@@ -29,10 +29,6 @@ class GenerationProcess
      */
     public function handle(GenerateCommandArgs $argument): array
     {
-        if ($argument->isFile() && !file_exists($argument->getPayload())) {
-            throw new \InvalidArgumentException(sprintf('File %s does not exit!', $argument->getPayload()));
-        }
-
         $schema = $this->schemaResolver->resolve(
             $this->decoder->decode($argument)
         );

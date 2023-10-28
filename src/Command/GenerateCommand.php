@@ -57,7 +57,7 @@ class GenerateCommand extends Command
         $this
             ->addArgument('className', InputArgument::REQUIRED, 'class name to generate')
             ->addArgument('payload', InputArgument::REQUIRED, 'payload')
-            ->addArgument('format', InputArgument::OPTIONAL, 'payload format, json or xml', 'json')
+            ->addArgument('format', InputArgument::OPTIONAL, 'payload format, json, xml, yaml', 'json')
             ->addOption('file', 'f', InputOption::VALUE_NONE, 'Is the payload a file ?')
             ->setHelp('Generate php a model from a payload');
     }
