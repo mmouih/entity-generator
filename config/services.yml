@@ -43,6 +43,7 @@ services:
     Symfony\Component\String\Inflector\StringProcessor: ~
     Symfony\Component\String\Inflector\EnglishInflector: ~
     Symfony\Component\Serializer\Encoder\JsonDecode: ~
+    Symfony\Component\Serializer\Encoder\XmlEncoder: ~
     Nette\PhpGenerator\ClassType: ~
     Nette\PhpGenerator\PsrPrinter: ~
     Nette\Utils\FileSystem: ~

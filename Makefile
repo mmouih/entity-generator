@@ -11,5 +11,7 @@ test:
 	./vendor/bin/phpunit
 sf_update:
 	composer update symfony/*
-poc:
+json-demo:
 	./app generate User tests/data/user.json -f
+xml-demo:
+	./app generate User tests/data/user.xml xml -f

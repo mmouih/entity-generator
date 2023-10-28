@@ -6,7 +6,6 @@ namespace EntityGenerator\Handler;
 
 use EntityGenerator\Bridge\Nette\Printer;
 use EntityGenerator\Type\GenerateCommandArgs;
-use Symfony\Component\Serializer\Encoder\JsonDecode;
 
 /**
  * @author Mounir Mouih <mounir.mouih@gmail.com>
@@ -17,7 +16,7 @@ class GenerationProcess
      * @param string[] $parameters
      */
     public function __construct(
-        private JsonDecode $decoder,
+        private Decoder $decoder,
         private SchemaResolver $schemaResolver,
         private EntityGenerator $entityGenerator,
         private Printer $printer,
@@ -30,8 +29,12 @@ class GenerationProcess
      */
     public function handle(GenerateCommandArgs $argument): array
     {
+        if ($argument->isFile() && !file_exists($argument->getPayload())) {
+            throw new \InvalidArgumentException(sprintf('File %s does not exit!', $argument->getPayload()));
+        }
+
         $schema = $this->schemaResolver->resolve(
-            $this->decode($argument)
+            $this->decoder->decode($argument)
         );
 
         $files = $this->entityGenerator->generate($argument->getClassName(), $schema);
@@ -46,20 +49,5 @@ class GenerationProcess
         }
 
         return $printed;
-    }
-
-    private function decode(GenerateCommandArgs $argument): mixed
-    {
-        if ($argument->isFile() && !file_exists($argument->getPayload())) {
-            throw new \InvalidArgumentException(sprintf('File %s does not exit!', $argument->getPayload()));
-        }
-
-        if ($argument->isFile()) {
-            $content = file_get_contents($argument->getPayload()) ?: '';
-        } else {
-            $content = $argument->getPayload() ?: '{}';
-        }
-
-        return (array)$this->decoder->decode($content, $argument->getFormat());
     }
 }
