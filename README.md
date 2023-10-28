@@ -33,10 +33,15 @@ Exemple:
 
 ### Using XML file
 ```shell
-./app generate [EntityName] [XML] "xml" -f
+./app generate [EntityName] [filepath] "xml" -f
 ```
 
 ### Using XML string
 ```shell
 ./app generate [EntityName] [XML] "xml" 
+```
+
+### Using Yaml file
+```shell
+./app generate [EntityName] [filepath] "xml" -f
 ```
