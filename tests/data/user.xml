@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+  <name>John Doe</name>
+  <age>30</age>
+  <address>
+    <street>123 Main Street</street>
+    <city>Anytown</city>
+    <postalCode>12345</postalCode>
+    <contacts>
+      <type>email</type>
+      <value>john.doe@example.com</value>
+      <detail/>
+    </contacts>
+    <contacts>
+      <type>phone</type>
+      <value>555-123-4567</value>
+      <detail>
+        <id>1</id>
+        <description>stuff</description>
+      </detail>
+    </contacts>
+    <contacts>
+      <type>phone</type>
+      <value/>
+      <detail/>
+    </contacts>
+  </address>
+  <orders>
+    <orderID>12345</orderID>
+    <products>
+      <productID>A001</productID>
+      <productName>Product 1</productName>
+      <quantity>2</quantity>
+    </products>
+    <products>
+      <productID>B002</productID>
+      <productName>Product 2</productName>
+      <quantity>3</quantity>
+    </products>
+  </orders>
+  <orders>
+    <orderID>54321</orderID>
+    <products>
+      <productID>C003</productID>
+      <productName>Product 3</productName>
+      <quantity>1</quantity>
+    </products>
+  </orders>
+</root>
