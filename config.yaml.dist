@@ -1,0 +1,5 @@
+entity.generator:
+    output.dir: 'var/generated'
+    namespace: 'Entity\Generated'
+    property.phpdoc: true
+    property.type: true # false before php7.4

@@ -1,11 +1,3 @@
-parameters:
-  printer.params: 
-    print_dir: 'var/generated'
-  entity.generator.params: 
-    namespace: 'Entity\Generated'
-    property.phpdoc: true
-    property.type: true # false before php7.4
-
 services:
     _defaults:
         autowire: true
@@ -21,23 +13,12 @@ services:
       exclude:
           - '../src/Type/'
           - '../src/Bridge/Nette/Wrapper/'
-
-    EntityGenerator\Handler\GenerationProcess:
-      arguments:
-          $parameters: '%printer.params%'
-    
-    EntityGenerator\Handler\EntityGenerator:
-      arguments:
-          $parameters: '%entity.generator.params%'
-    EntityGenerator\Handler\Property\AtomicType:
-      arguments:
-          $parameters: '%entity.generator.params%'
-    EntityGenerator\Handler\Property\CollectionType:
-      arguments:
-          $parameters: '%entity.generator.params%'
-
+  
     Symfony\Component\Serializer\Normalizer\DenormalizerInterface:
       class: Symfony\Component\Serializer\Normalizer\ObjectNormalizer
+    
+    Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface:
+      class: Symfony\Component\DependencyInjection\ParameterBag\ParameterBag
 
     Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter: ~
     Symfony\Component\String\Inflector\StringProcessor: ~
@@ -45,6 +26,8 @@ services:
     Symfony\Component\Serializer\Encoder\JsonDecode: ~
     Symfony\Component\Serializer\Encoder\XmlEncoder: ~
     Symfony\Component\Serializer\Encoder\YamlEncoder: ~
+    Symfony\Component\DependencyInjection\Loader\YamlFileLoader: ~
+    Symfony\Component\DependencyInjection\ContainerBuilder: ~
     Nette\PhpGenerator\ClassType: ~
     Nette\PhpGenerator\PsrPrinter: ~
     Nette\Utils\FileSystem: ~

@@ -2,7 +2,7 @@
 
 namespace EntityGenerator\Handler;
 
-use EntityGenerator\Type\GenerateCommandArgs;
+use EntityGenerator\Type\ConfigurationType;
 use Symfony\Component\Serializer\Encoder\JsonDecode;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\YamlEncoder;
@@ -19,7 +19,7 @@ class Decoder
     ) {
     }
 
-    public function decode(GenerateCommandArgs $argument): mixed
+    public function decode(ConfigurationType $argument): mixed
     {
         if ($argument->isFile()) {
             $content = file_get_contents($argument->getPayload()) ?: '';

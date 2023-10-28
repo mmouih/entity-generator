@@ -2,7 +2,8 @@
 
 namespace App\Tests\Feature;
 
-use EntityGenerator\Type\GenerateCommandArgs;
+use EntityGenerator\Bridge\Symfony\ParameterBag;
+use EntityGenerator\Type\ConfigurationType;
 use EntityGenerator\Handler\GenerationProcess;
 use EntityGenerator\Tests\KernelTestCase;
 
@@ -14,7 +15,7 @@ class EntityGenerationTest extends KernelTestCase
     public function testGenerate(): void
     {
         $generationProcess = $this->container()->get(GenerationProcess::class);
-        $files = $generationProcess->handle(new GenerateCommandArgs(
+        $files = $generationProcess->handle(new ConfigurationType(
             className: 'User',
             payload: __DIR__ . '/../data/user.json',
             file: true,
@@ -31,7 +32,7 @@ class EntityGenerationTest extends KernelTestCase
     public function testGenerateFromInput(): void
     {
         $generationProcess = $this->container()->get(GenerationProcess::class);
-        $files = $generationProcess->handle(new GenerateCommandArgs(
+        $files = $generationProcess->handle(new ConfigurationType(
             className : 'User',
             payload : json_encode([
                 "id" => 2,
@@ -47,7 +48,7 @@ class EntityGenerationTest extends KernelTestCase
         ));
 
         $this->assertCount(3, $files);
-        $detailFile = $this->container()->getParameter('printer.params')['print_dir'] . DIRECTORY_SEPARATOR . 'Detail.php';
+        $detailFile = $this->container()->get(ParameterBag::class)->get('output.dir') . DIRECTORY_SEPARATOR . 'Detail.php';
         $this->assertFileExists($detailFile);
         $expected = <<<EOF
 <?php
@@ -70,7 +71,7 @@ EOF;
         $this->assertEquals($expected, file_get_contents($detailFile));
 
         // Test account file for nullable types
-        $accountFile = $this->container()->getParameter('printer.params')['print_dir'] . DIRECTORY_SEPARATOR . 'Account.php';
+        $accountFile = $this->container()->get(ParameterBag::class)->get('output.dir') . DIRECTORY_SEPARATOR . 'Account.php';
         $this->assertFileExists($accountFile);
         $expected = <<<EOF
 <?php
@@ -101,7 +102,7 @@ EOF;
     {
         $this->expectException(\InvalidArgumentException::class);
         $generationProcess = $this->container()->get(GenerationProcess::class);
-        $generationProcess->handle(new GenerateCommandArgs(
+        $generationProcess->handle(new ConfigurationType(
             className : 'User',
             payload: __DIR__ . '/../data/user1.cson',
             file: true,

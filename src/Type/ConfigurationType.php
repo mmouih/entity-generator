@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EntityGenerator\Type;
 
-readonly class GenerateCommandArgs
+readonly class ConfigurationType
 {
     public function __construct(
         private string $className,
