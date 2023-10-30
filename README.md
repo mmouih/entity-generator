@@ -26,7 +26,7 @@ Or simply
 ./app generate [EntityName] [Json]
 ```
 
-Exemple: 
+Example: 
 ```shell
 ./app generate User '{"id": 1, "label": "john"}'
 ```
@@ -45,3 +45,22 @@ Exemple:
 ```shell
 ./app generate [EntityName] [filepath] "xml" -f
 ```
+
+## Configuration file
+
+You can use customized entity generation options using a configuration a below,
+
+```yaml
+#config.yaml.dist
+entity.generator:
+    output.dir: 'var/generated'
+    namespace: 'Entity\Generated'
+    property.phpdoc: true
+    property.type: true # false before php7.4
+```
+
+```shell
+./app generate [EntityName] [filepath] "xml" -f -c path/to/config.yaml.dist
+```
+
+If config file is not configured, default options `(config.yaml.dist)` will be used.
