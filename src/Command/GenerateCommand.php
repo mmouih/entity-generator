@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace EntityGenerator\Command;
 
-use EntityGenerator\Type\GenerateCommandArgs;
+use EntityGenerator\Bridge\Symfony\ParameterBag;
+use EntityGenerator\Type\ConfigurationType;
 use EntityGenerator\Handler\GenerationProcess;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -13,6 +14,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Serializer\Encoder\YamlEncoder;
 
 /**
  * @author Mounir Mouih <mounir.mouih@gmail.com>
@@ -20,23 +22,34 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'generate')]
 class GenerateCommand extends Command
 {
-    public function __construct(private GenerationProcess $classGenerationHandler)
-    {
+    public function __construct(
+        private GenerationProcess $classGenerationHandler,
+        private YamlEncoder $yamlEncoder,
+        private ParameterBag $parameterBag
+    ) {
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $output->writeln('start generating');
+        $output->writeln('Entity Generation');
         $io = new SymfonyStyle($input, $output);
 
         try {
-            $printed = $this->classGenerationHandler->handle(new GenerateCommandArgs(
+            $this->parameterBag->add(
+                $this->yamlEncoder->decode(
+                    file_get_contents($input->getOption('config')) ?: '',
+                    'yaml'
+                )
+            );
+
+            $printed = $this->classGenerationHandler->handle(new ConfigurationType(
                 className: $input->getArgument('className'),
                 payload: $input->getArgument('payload'),
                 format: $input->getArgument('format'),
-                file: $input->getOption('file')
+                file: $input->getOption('file'),
             ));
+
             $io->success('Entities generated with success in:');
             $io->info($printed);
         } catch (\Throwable $excepetion) {
@@ -59,6 +72,7 @@ class GenerateCommand extends Command
             ->addArgument('payload', InputArgument::REQUIRED, 'payload')
             ->addArgument('format', InputArgument::OPTIONAL, 'payload format, json, xml, yaml', 'json')
             ->addOption('file', 'f', InputOption::VALUE_NONE, 'Is the payload a file ?')
+            ->addOption('config', 'c', InputOption::VALUE_OPTIONAL, 'Is the payload a file ?', 'config.yaml.dist')
             ->setHelp('Generate php a model from a payload');
     }
 }
