@@ -1,4 +1,8 @@
 {
+    "name": "mounir/entity-generator",
+    "description": "A tool designed to streamline the conversion of payloads into class entities",
+    "type": "library",
+    "license": "MIT",
     "require": {
         "symfony/console": "^6.3",
         "symfony/serializer": "^6.3",
