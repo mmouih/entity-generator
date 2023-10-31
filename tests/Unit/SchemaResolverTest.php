@@ -88,17 +88,15 @@ class SchemaResolverTest extends KernelTestCase
         $this->assertEquals('string|null', $detailsSchema['sample']->type);
     }
 
-    // Resolver only accepts single item payload, collection payload not accepted, @todo improvement
     public function testCollectionPayload(): void
     {
         $schema = $this->resolver->resolve([["id" => 2, "name" => "john doe"], ["id" => 1, "name" => null]]);
-        $this->assertCount(2, $schema);
-        // $this->assertArrayHasKey('id', $schema);
-        // $this->assertArrayHasKey('name', $schema);
-        // $this->assertInstanceOf(SchemaDefinition::class, $schema['id']);
-        // $this->assertEmpty($schema['id']->getSchema());
-        // $this->assertFalse($schema['id']->hasSchema());
-        // $this->assertEquals('int', $schema['id']->type);
-        // $this->assertEquals('string', $schema['name']->type);
+        $this->assertArrayHasKey('id', $schema);
+        $this->assertArrayHasKey('name', $schema);
+        $this->assertInstanceOf(SchemaDefinition::class, $schema['id']);
+        $this->assertEmpty($schema['id']->getSchema());
+        $this->assertFalse($schema['id']->hasSchema());
+        $this->assertEquals('int', $schema['id']->type);
+        $this->assertEquals('string|null', $schema['name']->type);
     }
 }

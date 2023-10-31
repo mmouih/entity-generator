@@ -16,6 +16,10 @@ class SchemaResolver
      */
     public function resolve(array $data): array
     {
+        if (array_is_list($data)) {
+            return $this->resolveCollection($data);
+        }
+
         $schema = [];
         foreach ($data as $field => $value) {
             $schema[$field] = SchemaDefinition::fromData(
