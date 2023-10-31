@@ -36,6 +36,10 @@ class GenerateCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         try {
+            if (false === @file_get_contents($input->getOption('config'))) {
+                throw new \InvalidArgumentException(sprintf('configuration file %s not found or invalid', $input->getOption('config')));
+            }
+
             $this->parameterBag->add(
                 $this->yamlEncoder->decode(
                     file_get_contents($input->getOption('config')) ?: '',
@@ -54,9 +58,9 @@ class GenerateCommand extends Command
             $io->info($printed);
         } catch (\Throwable $excepetion) {
             $io->getErrorStyle()->error('An error has occured while generating entities:');
-            $io->getErrorStyle()->info([
+            $io->getErrorStyle()->warning([
                 'message' => $excepetion->getMessage(),
-                'file' => $excepetion->getFile() . 'on line ' . $excepetion->getLine()
+                'file' => $excepetion->getFile() . ' on line ' . $excepetion->getLine()
             ]);
 
             return Command::FAILURE;
@@ -72,7 +76,7 @@ class GenerateCommand extends Command
             ->addArgument('payload', InputArgument::REQUIRED, 'payload')
             ->addArgument('format', InputArgument::OPTIONAL, 'payload format, json, xml, yaml', 'json')
             ->addOption('file', 'f', InputOption::VALUE_NONE, 'Is the payload a file ?')
-            ->addOption('config', 'c', InputOption::VALUE_OPTIONAL, 'Is the payload a file ?', 'config.yaml.dist')
+            ->addOption('config', 'c', InputOption::VALUE_OPTIONAL, 'Is the payload a file ?', './config.yaml.dist')
             ->setHelp('Generate php a model from a payload');
     }
 }

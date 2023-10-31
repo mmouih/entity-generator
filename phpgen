@@ -4,7 +4,7 @@
  * @author Mounir Mouih <mounir.mouih@gmail.com>
  */
 
-require __DIR__ . '/vendor/autoload.php';
+require './vendor/autoload.php';
 
 use EntityGenerator\BaseApplication;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 $container = new ContainerBuilder();
-$loader = new YamlFileLoader($container, new FileLocator('./config/'));
+$loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/config/'));
 $loader->load('services.yml');
 $container->compile();
 

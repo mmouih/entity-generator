@@ -14,8 +14,8 @@ test:
 sf_update:
 	composer update symfony/*
 json:
-	./app generate User tests/data/user.json -f
+	./phpgen generate User tests/data/user.json -f
 xml:
-	./app generate User tests/data/user.xml xml -f
+	./phpgen generate User tests/data/user.xml xml -f
 yaml:
-	./app generate User tests/data/user.yaml yaml -f
+	./phpgen generate User tests/data/user.yaml yaml -f

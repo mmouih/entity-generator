@@ -15,35 +15,35 @@ To leverage the **Entity Generator**, use the following command:
 
 ### Using Json file
 ```shell
-./app generate [EntityName] [Payload] --f
+./phpgen generate [EntityName] [Payload] --f
 ```
 ### Using Json string
 ```shell
-./app generate [EntityName] [Json] "json" 
+./phpgen generate [EntityName] [Json] "json" 
 ```
 Or simply 
 ```shell
-./app generate [EntityName] [Json]
+./phpgen generate [EntityName] [Json]
 ```
 
 Example: 
 ```shell
-./app generate User '{"id": 1, "label": "john"}'
+./phpgen generate User '{"id": 1, "label": "john"}'
 ```
 
 ### Using XML file
 ```shell
-./app generate [EntityName] [filepath] "xml" -f
+./phpgen generate [EntityName] [filepath] "xml" -f
 ```
 
 ### Using XML string
 ```shell
-./app generate [EntityName] [XML] "xml" 
+./phpgen generate [EntityName] [XML] "xml" 
 ```
 
 ### Using Yaml file
 ```shell
-./app generate [EntityName] [filepath] "xml" -f
+./phpgen generate [EntityName] [filepath] "xml" -f
 ```
 
 ## Configuration file
@@ -60,7 +60,7 @@ entity.generator:
 ```
 
 ```shell
-./app generate [EntityName] [filepath] "xml" -f -c path/to/config.yaml.dist
+./phpgen generate [EntityName] [filepath] "xml" -f -c path/to/config.yaml.dist
 ```
 
 If config file is not configured, default options `(config.yaml.dist)` will be used.

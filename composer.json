@@ -2,7 +2,16 @@
     "name": "mmouih/entity-generator",
     "description": "A tool designed to streamline the conversion of payloads into class entities",
     "type": "library",
-    "license": "MIT",
+    "license": [
+        "MIT"
+    ],
+    "keywords": [
+        "dev",
+        "entity",
+        "pdo",
+        "payload",
+        "generator"
+    ],
     "require": {
         "symfony/console": "^6.3",
         "symfony/serializer": "^6.3",
@@ -35,10 +44,12 @@
             "EntityGenerator\\Tests\\": "tests/"
         }
     },
+    "bin": [
+        "phpgen"
+    ],
     "config": {
         "allow-plugins": {
-            "symfony/runtime": true,
-            "pestphp/pest-plugin": true
+            "symfony/runtime": true
         }
     }
 }
