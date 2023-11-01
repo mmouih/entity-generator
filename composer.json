@@ -1,14 +1,16 @@
 {
     "name": "mmouih/entity-generator",
-    "description": "A tool designed to streamline the conversion of payloads into class entities",
+    "description": "A tool designed to streamline the conversion of payloads (json, xml or yaml) into class entities",
     "type": "library",
     "license": [
         "MIT"
     ],
     "keywords": [
         "dev",
+        "php",
+        "phpgen",
         "entity",
-        "pdo",
+        "dto",
         "payload",
         "generator"
     ],
