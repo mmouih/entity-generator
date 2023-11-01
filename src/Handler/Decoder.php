@@ -6,6 +6,7 @@ use EntityGenerator\Type\ConfigurationType;
 use Symfony\Component\Serializer\Encoder\JsonDecode;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\YamlEncoder;
+use EntityGenerator\Exception\InvalidArgumentException;
 
 /**
  * @author Mounir Mouih <mounir.mouih@gmail.com>
@@ -31,7 +32,7 @@ class Decoder
             'json' => (array)$this->decoder->decode($content, $argument->getFormat()),
             'xml' => (array)$this->xmlEncoder->decode($content, $argument->getFormat()),
             'yaml' => (array)$this->yamlEncoder->decode($content, $argument->getFormat()),
-            default => throw new \InvalidArgumentException(sprintf('Unsupported format %s', $argument->getFormat())),
+            default => throw new InvalidArgumentException(sprintf('Unsupported format %s', $argument->getFormat())),
         };
     }
 }
