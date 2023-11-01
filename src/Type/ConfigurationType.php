@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace EntityGenerator\Type;
 
+use EntityGenerator\Exception\InvalidArgumentException;
+
 readonly class ConfigurationType
 {
     public function __construct(
@@ -13,19 +15,19 @@ readonly class ConfigurationType
         private string $format = 'json'
     ) {
         if (0 === strlen(trim($payload))) {
-            throw new \InvalidArgumentException('The payload is required!');
+            throw new InvalidArgumentException('The payload is required!');
         }
 
         if (0 === strlen(trim($className))) {
-            throw new \InvalidArgumentException('The className is is required!');
+            throw new InvalidArgumentException('The className is is required!');
         }
 
         if (!in_array($format, ['json', 'xml', 'yaml'])) {
-            throw new \InvalidArgumentException('The argument format can either be json or xml');
+            throw new InvalidArgumentException('The argument format can either be json or xml');
         }
 
         if ($this->isFile() && !file_exists($this->getPayload())) {
-            throw new \InvalidArgumentException(sprintf('File %s does not exit!', $this->getPayload()));
+            throw new InvalidArgumentException(sprintf('File %s does not exit!', $this->getPayload()));
         }
     }
 

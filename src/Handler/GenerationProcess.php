@@ -7,7 +7,6 @@ namespace EntityGenerator\Handler;
 use EntityGenerator\Bridge\Nette\Printer;
 use EntityGenerator\Bridge\Symfony\ParameterBag;
 use EntityGenerator\Type\ConfigurationType;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 /**
  * @author Mounir Mouih <mounir.mouih@gmail.com>

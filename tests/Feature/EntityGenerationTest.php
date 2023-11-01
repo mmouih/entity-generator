@@ -2,10 +2,11 @@
 
 namespace App\Tests\Feature;
 
-use EntityGenerator\Bridge\Symfony\ParameterBag;
+use EntityGenerator\Tests\KernelTestCase;
 use EntityGenerator\Type\ConfigurationType;
 use EntityGenerator\Handler\GenerationProcess;
-use EntityGenerator\Tests\KernelTestCase;
+use EntityGenerator\Bridge\Symfony\ParameterBag;
+use EntityGenerator\Exception\InvalidArgumentException;
 
 /**
  * @author Mounir Mouih <mounir.mouih@gmail.com>
@@ -100,7 +101,7 @@ EOF;
 
     public function testFileNotExist(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $generationProcess = $this->container()->get(GenerationProcess::class);
         $generationProcess->handle(new ConfigurationType(
             className : 'User',
