@@ -24,6 +24,65 @@ class EntityGenerationTest extends KernelTestCase
         ));
 
         $this->assertCount(6, $files);
+
+        $outputDir = $this->container()->get(ParameterBag::class)->get('output.dir');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Detail.php');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Contact.php');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Address.php');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Product.php');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Order.php');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'User.php');
+
+        // clean up created files
+        foreach ($files as $file) {
+            unlink($file);
+        }
+    }
+    public function testGenerateYaml(): void
+    {
+        $generationProcess = $this->container()->get(GenerationProcess::class);
+        $files = $generationProcess->handle(new ConfigurationType(
+            className: 'User',
+            payload: __DIR__ . '/../data/user.yaml',
+            file: true,
+            format: 'yaml',
+        ));
+
+        $this->assertCount(6, $files);
+
+        $outputDir = $this->container()->get(ParameterBag::class)->get('output.dir');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Detail.php');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Contact.php');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Address.php');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Product.php');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Order.php');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'User.php');
+
+        // clean up created files
+        foreach ($files as $file) {
+            unlink($file);
+        }
+    }
+    public function testGenerateXml(): void
+    {
+        $generationProcess = $this->container()->get(GenerationProcess::class);
+        $files = $generationProcess->handle(new ConfigurationType(
+            className: 'User',
+            payload: __DIR__ . '/../data/user.xml',
+            file: true,
+            format: 'xml',
+        ));
+
+        $this->assertCount(6, $files);
+
+        $outputDir = $this->container()->get(ParameterBag::class)->get('output.dir');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Detail.php');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Contact.php');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Address.php');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Products.php');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Order.php');
+        $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'User.php');
+
         // clean up created files
         foreach ($files as $file) {
             unlink($file);
