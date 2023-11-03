@@ -21,8 +21,12 @@ class StringProcessor
 
     public function toCamelCase(string $str): string
     {
+        if (preg_match('/^[A-Z\-_\d]+$/', $str)) {
+            $str = strtolower($str);
+        }
+
         return $this->camelCaseToSnakeCaseNameConverter->denormalize(
-            str_replace('-', '_', strtolower($str))
+            str_replace('-', '_', $str)
         );
     }
 

@@ -87,6 +87,10 @@ class SchemaResolver
 
     private function getScalarType(mixed $value): string
     {
+        if (!empty($value) && ((int) $value == $value)) {
+            return 'int';
+        }
+
         return match (gettype($value)) {
             'integer' => 'int',
             'double' => 'float',
