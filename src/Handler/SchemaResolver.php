@@ -41,7 +41,7 @@ class SchemaResolver
         }
 
         if (is_object($value) || !array_is_list($value)) {
-            // fetch the schema recursivel
+            // fetch the schema recursively
             return ['type' => 'object', 'schema' => $this->resolve((array)$value)];
         }
 

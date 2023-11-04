@@ -8,7 +8,7 @@ use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter
 use Symfony\Component\String\Inflector\EnglishInflector;
 
 /**
- * String transformation and processing operations
+ * String transformation and processing
  * @author Mounir Mouih <mounir.mouih@gmail.com>
  */
 class StringProcessor
