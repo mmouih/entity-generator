@@ -24,9 +24,9 @@ use EntityGenerator\Exception\InvalidArgumentException;
 class GenerateCommand extends Command
 {
     public function __construct(
-        private GenerationProcess $classGenerationHandler,
-        private YamlEncoder $yamlEncoder,
-        private ParameterBag $parameterBag
+        private readonly GenerationProcess $classGenerationHandler,
+        private readonly YamlEncoder $yamlEncoder,
+        private readonly ParameterBag $parameterBag
     ) {
         parent::__construct();
     }

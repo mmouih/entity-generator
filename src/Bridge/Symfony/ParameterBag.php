@@ -13,7 +13,7 @@ class ParameterBag
 {
     private const ROOT_PARAMETER = "entity.generator";
 
-    public function __construct(private ParameterBagInterface $parameterBag)
+    public function __construct(private readonly ParameterBagInterface $parameterBag)
     {
     }
 

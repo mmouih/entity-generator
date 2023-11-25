@@ -14,8 +14,8 @@ use Symfony\Component\String\Inflector\EnglishInflector;
 class StringProcessor
 {
     public function __construct(
-        private CamelCaseToSnakeCaseNameConverter $camelCaseToSnakeCaseNameConverter,
-        private EnglishInflector $inflector
+        private readonly CamelCaseToSnakeCaseNameConverter $camelCaseToSnakeCaseNameConverter,
+        private readonly EnglishInflector $inflector
     ) {
     }
 
@@ -35,7 +35,6 @@ class StringProcessor
      * Note: side effect: if a word is already singular inexpected behaviour could occur!
      * Ex: Address -> Addres!
      *
-     * @param string $word
      * @return string
      */
     public function singularize(string $word): string

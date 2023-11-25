@@ -12,7 +12,7 @@ class NamespaceWrapper
 {
     use NameTrait;
 
-    private PhpNamespace $inner;
+    private readonly PhpNamespace $inner;
 
     public function __construct(string $name)
     {

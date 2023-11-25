@@ -31,7 +31,6 @@ class SchemaResolver
     }
 
     /**
-     * @param mixed $value
      * @return  array<string, array<SchemaDefinition>|string>
      */
     private function resolveField(mixed $value): array

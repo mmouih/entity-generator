@@ -9,6 +9,8 @@ build:
 	composer install
 validate:
 	composer validate
+rector:
+	./vendor/bin/rector
 test:
 	./vendor/bin/phpunit
 sf_update:

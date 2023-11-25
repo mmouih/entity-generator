@@ -12,7 +12,7 @@ use EntityGenerator\Bridge\Symfony\ParameterBag;
  */
 class AtomicType implements PropertyHandlerInterface
 {
-    public function __construct(private ParameterBag $parameterBag)
+    public function __construct(private readonly ParameterBag $parameterBag)
     {
     }
 

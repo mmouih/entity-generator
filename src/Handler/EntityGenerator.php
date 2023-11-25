@@ -22,9 +22,9 @@ class EntityGenerator
     private array $generateFiles = [];
 
     public function __construct(
-        private StringProcessor $stringProcessor,
-        private CollectionType $collectionType,
-        private AtomicType $atomicType
+        private readonly StringProcessor $stringProcessor,
+        private readonly CollectionType $collectionType,
+        private readonly AtomicType $atomicType
     ) {
     }
 

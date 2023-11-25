@@ -13,7 +13,7 @@ class FileWrapper
 {
     use CommentTrait;
 
-    private PhpFile $inner;
+    private readonly PhpFile $inner;
     public function __construct()
     {
         $this->inner = new PhpFile();
