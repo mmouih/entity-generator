@@ -14,8 +14,8 @@ use Symfony\Component\String\Inflector\EnglishInflector;
 class StringProcessor
 {
     public function __construct(
-        private CamelCaseToSnakeCaseNameConverter $camelCaseToSnakeCaseNameConverter,
-        private EnglishInflector $inflector
+        private readonly CamelCaseToSnakeCaseNameConverter $camelCaseToSnakeCaseNameConverter,
+        private readonly EnglishInflector $inflector
     ) {
     }
 
@@ -34,14 +34,11 @@ class StringProcessor
      * Singularize an english word
      * Note: side effect: if a word is already singular inexpected behaviour could occur!
      * Ex: Address -> Addres!
-     *
-     * @param string $word
-     * @return string
      */
     public function singularize(string $word): string
     {
         // if singular found we take the first proposition of the infector otherwise we return the orginal word
-        if (empty($singular = $this->inflector->singularize($word))) {
+        if (($singular = $this->inflector->singularize($word)) === []) {
             return $word;
         }
 

@@ -14,11 +14,11 @@ use EntityGenerator\Type\ConfigurationType;
 class GenerationProcess
 {
     public function __construct(
-        private Decoder $decoder,
-        private SchemaResolver $schemaResolver,
-        private EntityGenerator $entityGenerator,
-        private Printer $printer,
-        private ParameterBag $parameterBag
+        private readonly Decoder $decoder,
+        private readonly SchemaResolver $schemaResolver,
+        private readonly EntityGenerator $entityGenerator,
+        private readonly Printer $printer,
+        private readonly ParameterBag $parameterBag
     ) {
     }
 

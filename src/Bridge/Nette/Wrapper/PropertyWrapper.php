@@ -14,7 +14,7 @@ class PropertyWrapper
     use CommentTrait;
     use NameTrait;
 
-    private Property $inner;
+    private readonly Property $inner;
 
     public function __construct(string $name)
     {

@@ -14,8 +14,8 @@ use Nette\PhpGenerator\PsrPrinter;
 class Printer
 {
     public function __construct(
-        private FileSystem $fileSystem,
-        private PsrPrinter $printer
+        private readonly FileSystem $fileSystem,
+        private readonly PsrPrinter $printer
     ) {
     }
 

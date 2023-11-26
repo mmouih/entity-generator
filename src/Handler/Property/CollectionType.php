@@ -13,7 +13,7 @@ use EntityGenerator\Bridge\Symfony\ParameterBag;
  */
 class CollectionType implements PropertyHandlerInterface
 {
-    public function __construct(private ParameterBag $parameterBag)
+    public function __construct(private readonly ParameterBag $parameterBag)
     {
     }
 

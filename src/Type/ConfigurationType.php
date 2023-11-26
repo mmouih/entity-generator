@@ -14,11 +14,11 @@ readonly class ConfigurationType
         private bool $file = false,
         private string $format = 'json'
     ) {
-        if (0 === strlen(trim($payload))) {
+        if ('' === trim($payload)) {
             throw new InvalidArgumentException('The payload is required!');
         }
 
-        if (0 === strlen(trim($className))) {
+        if ('' === trim($className)) {
             throw new InvalidArgumentException('The className is is required!');
         }
 

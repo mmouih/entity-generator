@@ -14,9 +14,9 @@ use EntityGenerator\Exception\InvalidArgumentException;
 class Decoder
 {
     public function __construct(
-        private JsonDecode $decoder,
-        private XmlEncoder $xmlEncoder,
-        private YamlEncoder $yamlEncoder
+        private readonly JsonDecode $decoder,
+        private readonly XmlEncoder $xmlEncoder,
+        private readonly YamlEncoder $yamlEncoder
     ) {
     }
 

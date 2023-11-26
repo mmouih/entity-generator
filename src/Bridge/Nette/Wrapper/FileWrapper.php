@@ -3,7 +3,6 @@
 namespace EntityGenerator\Bridge\Nette\Wrapper;
 
 use Nette\PhpGenerator\PhpFile;
-use EntityGenerator\Bridge\Nette\Wrapper\NamespaceWrapper;
 use EntityGenerator\Bridge\Nette\Wrapper\Trait\CommentTrait;
 
 /**
@@ -13,7 +12,7 @@ class FileWrapper
 {
     use CommentTrait;
 
-    private PhpFile $inner;
+    private readonly PhpFile $inner;
     public function __construct()
     {
         $this->inner = new PhpFile();
