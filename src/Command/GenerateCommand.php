@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EntityGenerator\Command;
 
+use Throwable;
 use EntityGenerator\Type\ConfigurationType;
 use EntityGenerator\Handler\GenerationProcess;
 use Symfony\Component\Console\Command\Command;
@@ -57,7 +58,7 @@ class GenerateCommand extends Command
 
             $io->success('Entities generated with success in:');
             $io->info($printed);
-        } catch (\Throwable $excepetion) {
+        } catch (Throwable $excepetion) {
             $io->getErrorStyle()->error('An error has occured while generating entities:');
             $io->getErrorStyle()->warning([
                 'message' => $excepetion->getMessage(),

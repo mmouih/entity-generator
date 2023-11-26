@@ -15,6 +15,7 @@ return static function (RectorConfig $rectorConfig): void {
 
     // register a single rule
     $rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
+    $rectorConfig->importNames();
 
     $rectorConfig->sets([
         LevelSetList::UP_TO_PHP_82,

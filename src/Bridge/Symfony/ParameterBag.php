@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EntityGenerator\Bridge\Symfony;
 
+use UnitEnum;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 /**
@@ -23,7 +24,7 @@ class ParameterBag
     }
 
     /**
-     * @return array<mixed>|bool|float|int|string|\UnitEnum
+     * @return array<mixed>|bool|float|int|string|UnitEnum
      */
     public function all(string $root = self::ROOT_PARAMETER): mixed
     {

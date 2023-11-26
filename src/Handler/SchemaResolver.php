@@ -2,6 +2,7 @@
 
 namespace EntityGenerator\Handler;
 
+use LogicException;
 use EntityGenerator\Type\SchemaDefinition;
 
 /**
@@ -91,7 +92,7 @@ class SchemaResolver
             'string' => 'string',
             'NULL' => 'null', // If type stayes nullable after resolving all the schema, it will take mixed type
             'boolean' => 'bool',
-            default => throw new \LogicException('Unexpected type!')
+            default => throw new LogicException('Unexpected type!')
         };
     }
 }
