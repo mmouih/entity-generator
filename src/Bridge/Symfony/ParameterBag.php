@@ -5,16 +5,14 @@ declare(strict_types=1);
 namespace EntityGenerator\Bridge\Symfony;
 
 use UnitEnum;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface as SymfonyParamBag;
 
 /**
  * @author Mounir Mouih <mounir.mouih@gmail.com>
  */
-class ParameterBag
+class ParameterBag implements ParameterBagInterface
 {
-    private const ROOT_PARAMETER = "entity.generator";
-
-    public function __construct(private readonly ParameterBagInterface $parameterBag)
+    public function __construct(private readonly SymfonyParamBag $parameterBag)
     {
     }
 
@@ -24,7 +22,7 @@ class ParameterBag
     }
 
     /**
-     * @return array<mixed>|bool|float|int|string|UnitEnum
+     * @inheritDoc
      */
     public function all(string $root = self::ROOT_PARAMETER): mixed
     {
@@ -37,7 +35,7 @@ class ParameterBag
     }
 
     /**
-     * @param array<mixed> $config
+     * @inheritDoc
      */
     public function add(array $config): void
     {

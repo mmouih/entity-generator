@@ -16,6 +16,9 @@ services:
 
     Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface:
       class: Symfony\Component\DependencyInjection\ParameterBag\ParameterBag
+    
+    EntityGenerator\Bridge\Symfony\ParameterBagInterface:
+      class: EntityGenerator\Bridge\Symfony\ParameterBag
 
     Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter: ~
     Symfony\Component\String\Inflector\StringProcessor: ~

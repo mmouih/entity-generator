@@ -6,14 +6,14 @@ namespace EntityGenerator\Handler\Property;
 
 use Nette\PhpGenerator\Type;
 use EntityGenerator\Type\PropertyMetaData;
-use EntityGenerator\Bridge\Symfony\ParameterBag;
+use EntityGenerator\Bridge\Symfony\ParameterBagInterface;
 
 /**
  * @author Mounir Mouih <mounir.mouih@gmail.com>
  */
 class CollectionType implements PropertyHandlerInterface
 {
-    public function __construct(private readonly ParameterBag $parameterBag)
+    public function __construct(private readonly ParameterBagInterface $parameterBag)
     {
     }
 

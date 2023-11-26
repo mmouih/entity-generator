@@ -4,7 +4,7 @@ namespace EntityGenerator\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\FileLocator;
-use EntityGenerator\Bridge\Symfony\ParameterBag;
+use EntityGenerator\Bridge\Symfony\ParameterBagInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
@@ -17,7 +17,7 @@ class KernelTestCase extends TestCase
 
     public function setUp(): void
     {
-        $param = $this->container()->get(ParameterBag::class);
+        $param = $this->container()->get(ParameterBagInterface::class);
         $param->add(
             [
                 'entity.generator' => [
