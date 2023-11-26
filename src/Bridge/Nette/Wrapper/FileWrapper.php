@@ -3,7 +3,6 @@
 namespace EntityGenerator\Bridge\Nette\Wrapper;
 
 use Nette\PhpGenerator\PhpFile;
-use EntityGenerator\Bridge\Nette\Wrapper\NamespaceWrapper;
 use EntityGenerator\Bridge\Nette\Wrapper\Trait\CommentTrait;
 
 /**
