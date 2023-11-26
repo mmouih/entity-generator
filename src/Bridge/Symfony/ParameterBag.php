@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace EntityGenerator\Bridge\Symfony;
 
-use UnitEnum;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface as SymfonyParamBag;
 
 /**
