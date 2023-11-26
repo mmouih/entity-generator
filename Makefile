@@ -11,6 +11,8 @@ validate:
 	composer validate
 rector:
 	./vendor/bin/rector
+softrec:
+	./vendor/bin/rector process src --dry-run
 test:
 	./vendor/bin/phpunit
 sf_update:

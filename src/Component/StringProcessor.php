@@ -40,7 +40,7 @@ class StringProcessor
     public function singularize(string $word): string
     {
         // if singular found we take the first proposition of the infector otherwise we return the orginal word
-        if (empty($singular = $this->inflector->singularize($word))) {
+        if (($singular = $this->inflector->singularize($word)) === []) {
             return $word;
         }
 

@@ -5,11 +5,8 @@ namespace EntityGenerator\Tests;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\FileLocator;
 use EntityGenerator\Bridge\Symfony\ParameterBag;
-use Symfony\Component\Serializer\Encoder\YamlEncoder;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 /**
  * @author Mounir Mouih <mounir.mouih@gmail.com>
@@ -35,7 +32,7 @@ class KernelTestCase extends TestCase
 
     protected function container(): ContainerBuilder
     {
-        if (null !== $this->container) {
+        if ($this->container instanceof ContainerBuilder) {
             return $this->container;
         }
 
