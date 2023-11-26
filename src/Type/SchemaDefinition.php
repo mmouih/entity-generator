@@ -17,7 +17,6 @@ class SchemaDefinition
 
     /**
      * @param array<mixed> $data
-     * @return self
      */
     public static function fromData(array $data): self
     {

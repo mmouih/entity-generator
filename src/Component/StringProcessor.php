@@ -34,8 +34,6 @@ class StringProcessor
      * Singularize an english word
      * Note: side effect: if a word is already singular inexpected behaviour could occur!
      * Ex: Address -> Addres!
-     *
-     * @return string
      */
     public function singularize(string $word): string
     {
