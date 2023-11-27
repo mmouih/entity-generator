@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace EntityGenerator\Handler\Property;
 
 use EntityGenerator\Type\PropertyMetaData;
-use EntityGenerator\Bridge\Symfony\ParameterBag;
+use EntityGenerator\Bridge\Symfony\ParameterBagInterface;
 
 /**
  * @author Mounir Mouih <mounir.mouih@gmail.com>
  */
 class AtomicType implements PropertyHandlerInterface
 {
-    public function __construct(private readonly ParameterBag $parameterBag)
+    public function __construct(private readonly ParameterBagInterface $parameterBag)
     {
     }
 

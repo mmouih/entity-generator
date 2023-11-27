@@ -8,7 +8,7 @@ use Throwable;
 use EntityGenerator\Type\ConfigurationType;
 use EntityGenerator\Handler\GenerationProcess;
 use Symfony\Component\Console\Command\Command;
-use EntityGenerator\Bridge\Symfony\ParameterBag;
+use EntityGenerator\Bridge\Symfony\ParameterBagInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -27,7 +27,7 @@ class GenerateCommand extends Command
     public function __construct(
         private readonly GenerationProcess $classGenerationHandler,
         private readonly YamlEncoder $yamlEncoder,
-        private readonly ParameterBag $parameterBag
+        private readonly ParameterBagInterface $parameterBag
     ) {
         parent::__construct();
     }

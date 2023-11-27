@@ -5,7 +5,7 @@ namespace App\Tests\Feature;
 use EntityGenerator\Tests\KernelTestCase;
 use EntityGenerator\Type\ConfigurationType;
 use EntityGenerator\Handler\GenerationProcess;
-use EntityGenerator\Bridge\Symfony\ParameterBag;
+use EntityGenerator\Bridge\Symfony\ParameterBagInterface;
 use EntityGenerator\Exception\InvalidArgumentException;
 
 /**
@@ -25,7 +25,7 @@ class EntityGenerationTest extends KernelTestCase
 
         $this->assertCount(6, $files);
 
-        $outputDir = $this->container()->get(ParameterBag::class)->get('output.dir');
+        $outputDir = $this->container()->get(ParameterBagInterface::class)->get('output.dir');
         $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Detail.php');
         $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Contact.php');
         $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Address.php');
@@ -50,7 +50,7 @@ class EntityGenerationTest extends KernelTestCase
 
         $this->assertCount(6, $files);
 
-        $outputDir = $this->container()->get(ParameterBag::class)->get('output.dir');
+        $outputDir = $this->container()->get(ParameterBagInterface::class)->get('output.dir');
         $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Detail.php');
         $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Contact.php');
         $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Address.php');
@@ -75,7 +75,7 @@ class EntityGenerationTest extends KernelTestCase
 
         $this->assertCount(6, $files);
 
-        $outputDir = $this->container()->get(ParameterBag::class)->get('output.dir');
+        $outputDir = $this->container()->get(ParameterBagInterface::class)->get('output.dir');
         $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Detail.php');
         $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Contact.php');
         $this->assertFileExists($outputDir . DIRECTORY_SEPARATOR . 'Address.php');
@@ -108,7 +108,7 @@ class EntityGenerationTest extends KernelTestCase
         ));
 
         $this->assertCount(3, $files);
-        $detailFile = $this->container()->get(ParameterBag::class)->get('output.dir') . DIRECTORY_SEPARATOR . 'Detail.php';
+        $detailFile = $this->container()->get(ParameterBagInterface::class)->get('output.dir') . DIRECTORY_SEPARATOR . 'Detail.php';
         $this->assertFileExists($detailFile);
         $expected = <<<EOF
 <?php
@@ -131,7 +131,7 @@ EOF;
         $this->assertEquals($expected, file_get_contents($detailFile));
 
         // Test account file for nullable types
-        $accountFile = $this->container()->get(ParameterBag::class)->get('output.dir') . DIRECTORY_SEPARATOR . 'Account.php';
+        $accountFile = $this->container()->get(ParameterBagInterface::class)->get('output.dir') . DIRECTORY_SEPARATOR . 'Account.php';
         $this->assertFileExists($accountFile);
         $expected = <<<EOF
 <?php

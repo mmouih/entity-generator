@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace EntityGenerator\Handler;
 
 use EntityGenerator\Bridge\Nette\Printer;
-use EntityGenerator\Bridge\Symfony\ParameterBag;
+use EntityGenerator\Bridge\Symfony\ParameterBagInterface;
 use EntityGenerator\Type\ConfigurationType;
 
 /**
@@ -18,7 +18,7 @@ class GenerationProcess
         private readonly SchemaResolver $schemaResolver,
         private readonly EntityGenerator $entityGenerator,
         private readonly Printer $printer,
-        private readonly ParameterBag $parameterBag
+        private readonly ParameterBagInterface $parameterBag
     ) {
     }
 
